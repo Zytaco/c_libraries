@@ -1,0 +1,8 @@
+mv ft_lstadd.c list-functions/;
+mv ft_lstaddend.c list-functions/;
+mv ft_lstiter.c list-functions/;
+mv ft_lstnew.c list-functions/;
+mv ft_lstdelone.c list-functions/;
+mv ft_lstdel.c list-functions/;
+mv ft_lstmap.c list-functions/;
+mv ft_lstprintelemsizes.c list-functions/;
