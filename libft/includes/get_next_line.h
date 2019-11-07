@@ -15,7 +15,7 @@
 # define BUFF_SIZE 2
 # include <string.h>
 
-int					get_next_line(const int fd, char **line);
+int					ft_get_next_line(const int fd, char **line);
 void				ft_strdel(char **as);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strcpy(char *dst, const char *src);

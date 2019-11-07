@@ -161,7 +161,7 @@ char				*ft_get_first_substr(char *str);
 void				ft_error(char *str);
 void				ft_free_array(void ***array);
 char				*ft_itoabase(long long n, int base);
-int					get_next_line(const int fd, char **line);
+int					ft_get_next_line(const int fd, char **line);
 int					ft_atoi(const char *str);
 char				*ft_itoa(long long n);
 
