@@ -54,18 +54,18 @@ all: $(NAME)
 $(NAME): $(OBJECTS)
 		@ ar rc $(NAME) $(OBJECTS)
 		@ ranlib $(NAME)
-		@ echo "\033[36mLIBFT LIBRARY COMPILED\033[0m"
+		@ echo "\033[36mLIBFT: COMPILED\033[0m"
 
 %.o: %.c
 		@ $(CC) $(CFLAGS) $< -o $@
 
 clean:
 		@ rm -f $(OBJECTS)
-		@ echo "\033[33mCLEAN COMPLETED\033[0m"
+		@ echo "\033[33mLIBFT: CLEANED\033[0m"
 
 fclean:
 		@ rm -f $(NAME)
 		@ rm -f $(OBJECTS)
-		@ echo "\033[91mFULL CLEAN COMPLETED\033[0m"
+		@ echo "\033[91mLIBFT: FULL CLEANED\033[0m"
 
 re:	 fclean all
