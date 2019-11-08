@@ -18,6 +18,7 @@ void	sort_cpy_array(t_array *from, t_array *into)
 
 	if (!from || !into)
 		return ;
+	i = 0;
 	while (i < from->size && i < into->size)
 	{
 		into->array[i] = from->array[i];

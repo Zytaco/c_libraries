@@ -17,6 +17,7 @@ static t_array	*make_total_size_array(t_array **array_array)
 	U_INT	i;
 	U_INT	size;
 
+	size = 0;
 	i = 0;
 	while (array_array[i])
 	{

@@ -35,7 +35,7 @@ t_array		*sort_merge_sort(t_array *a, t_array *b)
 			pos_b++;
 		}
 	}
-	sort_free_array(a);
-	sort_free_array(b);
+	sort_free_array(&a);
+	sort_free_array(&b);
 	return (new);
 }

@@ -64,7 +64,7 @@ void		sort_insert_sort(t_array *a)
 
 	if (a->size <= 1)
 		return ;
-	cpy = sort_cpy_array(a);
+	cpy = sort_dup_array(a);
 	maximize_array(a);
 	size = cpy->size;
 	while (size > 0)
