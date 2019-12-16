@@ -84,7 +84,9 @@ t_list				*ft_lstnew(void const *content, size_t content_size);
 ** math-functions
 */
 int					ft_abs(int num);
+long long			ft_bcd(long long a, long long b);
 int					ft_count_digits(long long n);
+long long			ft_lcm(long long a, long long b);
 int					ft_modulo(int x, int mod);
 int					ft_nroot(unsigned int num, unsigned int degree);
 long long			ft_power(int num, int power);

@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_bcd.c                                           :+:    :+:            */
+/*   ft_lcm.c                                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/12/12 12:40:57 by jheeresm      #+#    #+#                 */
-/*   Updated: 2019/12/12 12:40:57 by jheeresm      ########   odam.nl         */
+/*   Created: 2019/12/16 15:04:48 by jheeresm      #+#    #+#                 */
+/*   Updated: 2019/12/16 15:04:48 by jheeresm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libft.h"
 
-long long	ft_bcd(long long a, long long b)
+long long	ft_lcm(long long a, long long b)
 {
 	unsigned long long i;
-	unsigned long long denom;
 
 	if (a == 0 || b == 0 || (a < 0 && b > 0) || (a > 0 && b < 0))
-		return (0);
-	i = 1;
-	denom = a / i;
-	while (i <= denom)
+		return (-1);
+	i = (a < b) ? (b / a) : (a / b);
+	while (i * a > 0)
 	{
-		if (a % denom == 0 && b % denom == 0)
-			return (denom);
+		if (b % (i * a) == 0)
+			return (i * a);
 		i++;
-		denom = a / i;
 	}
-	return (denom);
+	return (-1);
 }

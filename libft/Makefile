@@ -21,7 +21,8 @@ CHAR_FUNCTIONS	=	isalnum isalpha isascii isdigit isint isprint iswhitespace \
 
 LIST-FUNCTIONS	=	lstadd lstaddend lstdel lstdelone lstiter lstmap lstnew
 
-MATH-FUNCTIONS	=	abs count_digits modulo nroot power primes pythagoras sqrt
+MATH-FUNCTIONS	=	abs count_digits modulo nroot power primes pythagoras sqrt\
+					bcd	lcm
 
 MEM-FUNCTIONS	= 	bzero memalloc memccpy memchr memcmp memcpy memdel memmove \
 					memset
