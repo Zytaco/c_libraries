@@ -129,6 +129,7 @@ void				ft_putullnbr(unsigned long long n);
 */
 int					ft_skip_whitespace(char *str);
 int					ft_skipstr(char *str, char *skip);
+int					ft_skipnstr(char *str, char *skip);
 void				ft_stradd(char **replace, char *add);
 char				*ft_strcat(char *s1, const char *s2);
 char				*ft_strchr(const char *s, int c);

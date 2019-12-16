@@ -12,16 +12,16 @@
 
 #include "../../includes/libft.h"
 
-static int	in_skip(char c, char *skip)
+static int	in_str(char c, char *str)
 {
 	int i;
 
-	if (!skip)
-		return (1);
+	if (!str)
+		return (0);
 	i = 0;
-	while (skip[i] && c != skip[i])
+	while (str[i] && c != str[i])
 		i++;
-	if (skip[i])
+	if (str[i] == c)
 		return (1);
 	return (0);
 }
@@ -31,9 +31,21 @@ int			ft_skipstr(char *str, char *skip)
 	int i;
 
 	i = 0;
+	if (!str || !skip)
+		return (0);
+	while (str[i] && in_str(str[i], skip))
+		i++;
+	return (i);
+}
+
+int			ft_skipnstr(char *str, char *skip)
+{
+	int i;
+
+	i = 0;
 	if (!str)
 		return (0);
-	while (str[i] && in_skip(str[i], skip))
+	while (str[i] && !in_str(str[i], skip))
 		i++;
 	return (i);
 }
