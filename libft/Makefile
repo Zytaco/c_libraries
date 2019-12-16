@@ -6,7 +6,7 @@
 #    By: jheeresm <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/10/31 12:38:38 by jheeresm      #+#    #+#                  #
-#    Updated: 2019/10/31 12:38:39 by jheeresm      ########   odam.nl          #
+#    Updated: 2019/12/16 15:50:50 by jheeresm      ########   odam.nl          #
 #                                                                              #
 #******************************************************************************#
 
@@ -16,13 +16,13 @@ CC = 		gcc
 
 CFLAGS =	-Wall -Wextra -Werror -c
 
-CHAR_FUNCTIONS	=	isalnum isalpha isascii isdigit isint isprint iswhitespace \
+CHAR-FUNCTIONS	=	isalnum isalpha isascii isdigit isint isprint iswhitespace \
 					tolower toupper
 
 LIST-FUNCTIONS	=	lstadd lstaddend lstdel lstdelone lstiter lstmap lstnew
 
 MATH-FUNCTIONS	=	abs count_digits modulo nroot power primes pythagoras sqrt\
-					bcd	lcm
+					max min bcd lcm
 
 MEM-FUNCTIONS	= 	bzero memalloc memccpy memchr memcmp memcpy memdel memmove \
 					memset
@@ -30,21 +30,22 @@ MEM-FUNCTIONS	= 	bzero memalloc memccpy memchr memcmp memcpy memdel memmove \
 PUT-FUNCTIONS	=	putchar putchar_fd putendl putendl_fd putllnbr putnbr \
 					putnbr_fd putstr putstr_fd putullnbr
 
-STR-FUNCTIONS	=	strcat strchr strclr strcmp strcount strcpy strdel strdup \
+STR-FUNCTIONS	=	skip_whitespace stradd skipstr\
+					strcat strchr strclr strcmp strcount strcpy strdel strdup \
 					strequ striter striteri strjoin strlcat strlen strmap \
 					strmapi strncat strncmp strncpy strnequ strnew strnstr \
-					strrchr strsplit strstr strsub strtoupper strtrim
+					strrchr strsplit strstr strsub strtoupper strtrim strrepeat
 
 MISC-FUNCTIONS	=	atoi error free_array get_next_line itoa itoabase \
 					lstaddlast lstlen power_of
 
-SOURCES			=	$(CHAR_FUNCTIONS:%=srcs/char-functions/ft_%) \
-					$(LIST_FUNCTIONS:%=srcs/list-functions/ft_%) \
-					$(MATH_FUNCTIONS:%=srcs/math-functions/ft_%) \
-					$(MEM_FUNCTIONS:%=srcs/mem-functions/ft_%) \
-					$(PUT_FUNCTIONS:%=srcs/put-functions/ft_%) \
-					$(STR_FUNCTIONS:%=srcs/str-functions/ft_%) \
-					$(MISC_FUNCTIONS:%=srcs/misc-functions/ft_%)
+SOURCES			=	$(CHAR-FUNCTIONS:%=srcs/char-functions/ft_%) \
+					$(LIST-FUNCTIONS:%=srcs/list-functions/ft_%) \
+					$(MATH-FUNCTIONS:%=srcs/math-functions/ft_%) \
+					$(MEM-FUNCTIONS:%=srcs/mem-functions/ft_%) \
+					$(PUT-FUNCTIONS:%=srcs/put-functions/ft_%) \
+					$(STR-FUNCTIONS:%=srcs/str-functions/ft_%) \
+					$(MISC-FUNCTIONS:%=srcs/misc-functions/ft_%)
 
 CFILE =		$(SOURCES:%=%.c)
 

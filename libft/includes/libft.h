@@ -87,6 +87,8 @@ int					ft_abs(int num);
 long long			ft_bcd(long long a, long long b);
 int					ft_count_digits(long long n);
 long long			ft_lcm(long long a, long long b);
+long long			ft_max(long long a, long long b);
+long long			ft_min(long long a, long long b);
 int					ft_modulo(int x, int mod);
 int					ft_nroot(unsigned int num, unsigned int degree);
 long long			ft_power(int num, int power);
@@ -125,6 +127,9 @@ void				ft_putullnbr(unsigned long long n);
 /*
 ** str-functions
 */
+int					ft_skip_whitespace(char *str);
+int					ft_skipstr(char *str, char *skip);
+void				ft_stradd(char **replace, char *add);
 char				*ft_strcat(char *s1, const char *s2);
 char				*ft_strchr(const char *s, int c);
 void				ft_strclr(char *s);
@@ -150,6 +155,7 @@ char				*ft_strnew(size_t size);
 char				*ft_strnstr(const char *haystack,
 					const char *needle, size_t len);
 char				*ft_strrchr(const char *s, int c);
+char				*ft_strrepeat(char *s, int n);
 char				**ft_strsplit(char const *s, char c);
 char				*ft_strstr(const char *haystack, const char *needle);
 char				*ft_strsub(char const *s, unsigned int start, size_t len);
