@@ -12,7 +12,7 @@
 
 #include "../../includes/libft.h"
 
-void	ft_stradd(char **replace, char *add)
+void	ft_stradd(const char **replace, const char *add)
 {
 	char *new;
 
@@ -23,7 +23,7 @@ void	ft_stradd(char **replace, char *add)
 	else
 	{
 		new = ft_strjoin(*replace, add);
-		free(*replace);
+		free((void *)*replace);
 		*replace = new;
 	}
 }

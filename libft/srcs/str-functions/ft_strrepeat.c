@@ -12,7 +12,7 @@
 
 #include "../../includes/libft.h"
 
-char	*ft_strrepeat(char *s, int n)
+char	*ft_strrepeat(const char *s, int n)
 {
 	char		*new;
 	int			i;

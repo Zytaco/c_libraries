@@ -12,7 +12,7 @@
 
 #include "../../includes/libft.h"
 
-int		ft_skip_whitespace(char *str)
+int		ft_skip_whitespace(const char *str)
 {
 	int i;
 

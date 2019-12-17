@@ -127,10 +127,10 @@ void				ft_putullnbr(unsigned long long n);
 /*
 ** str-functions
 */
-int					ft_skip_whitespace(char *str);
-int					ft_skipstr(char *str, char *skip);
-int					ft_skipnstr(char *str, char *skip);
-void				ft_stradd(char **replace, char *add);
+int					ft_skip_whitespace(const char *str);
+int					ft_skipstr(const char *str, char *skip);
+int					ft_skipnstr(const char *str, char *skip);
+void				ft_stradd(const char **replace, const char *add);
 char				*ft_strcat(char *s1, const char *s2);
 char				*ft_strchr(const char *s, int c);
 void				ft_strclr(char *s);
@@ -139,7 +139,7 @@ int					ft_strcount(const char *s, char c);
 int					ft_strcount_whitespace(const char *s);
 char				*ft_strcpy(char *dst, const char *src);
 void				ft_strdel(char **as);
-char				*ft_strdup(char *src);
+char				*ft_strdup(const char *src);
 int					ft_strequ(char const *s1, char const *s2);
 void				ft_striter(char *s, void (*f)(char *));
 void				ft_striteri(char *s, void (*f)(unsigned int, char *));
@@ -155,8 +155,8 @@ int					ft_strnequ(char const *s1, char const *s2, size_t n);
 char				*ft_strnew(size_t size);
 char				*ft_strnstr(const char *haystack,
 					const char *needle, size_t len);
-char				*ft_strrchr(const char *s, int c);
-char				*ft_strrepeat(char *s, int n);
+char				*ft_strrchr(char *s, int c);
+char				*ft_strrepeat(const char *s, int n);
 char				**ft_strsplit(char const *s, char c);
 char				*ft_strstr(const char *haystack, const char *needle);
 char				*ft_strsub(char const *s, unsigned int start, size_t len);
