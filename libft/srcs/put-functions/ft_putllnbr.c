@@ -12,11 +12,7 @@
 
 #include "../../includes/libft.h"
 
-void		ft_putllnbr(long long n)
+void			ft_putllnbr(long long n)
 {
-	char *s;
-
-	s = ft_itoa(n);
-	ft_putstr(s);
-	free(s);
+	ft_putllnbr_fd(n, 1);
 }

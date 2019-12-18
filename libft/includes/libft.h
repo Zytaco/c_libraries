@@ -113,23 +113,25 @@ void				*ft_memset(void *b, int c, size_t len);
 /*
 ** put-functions
 */
-void				ft_putchar(char c);
 void				ft_putchar_fd(char c, int fd);
-void				ft_putendl(char const *s);
+void				ft_putchar(char c);
 void				ft_putendl_fd(char const *s, int fd);
+void				ft_putendl(char const *s);
+void				ft_putllnbr_fd(long long n, int fd);
 void				ft_putllnbr(long long n);
-void				ft_putnbr(int n);
 void				ft_putnbr_fd(int n, int fd);
-void				ft_putstr(char const *s);
+void				ft_putnbr(int n);
 void				ft_putstr_fd(char const *s, int fd);
+void				ft_putstr(char const *s);
+void				ft_putullnbr_fd(unsigned long long n, int fd);
 void				ft_putullnbr(unsigned long long n);
 
 /*
 ** str-functions
 */
 int					ft_skip_whitespace(const char *str);
-int					ft_skipstr(const char *str, char *skip);
-int					ft_skipnstr(const char *str, char *skip);
+int					ft_skipstr(const char *str, const char *skip);
+int					ft_skipnstr(const char *str, const char *skip);
 void				ft_stradd(const char **replace, const char *add);
 char				*ft_strcat(char *s1, const char *s2);
 char				*ft_strchr(const char *s, int c);

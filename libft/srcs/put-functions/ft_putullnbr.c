@@ -14,12 +14,5 @@
 
 void			ft_putullnbr(unsigned long long n)
 {
-	unsigned long long	res;
-	unsigned long long	m;
-
-	m = n;
-	res = m % 10 + '0';
-	if ((m / 10) != 0)
-		ft_putllnbr(m / 10);
-	write(1, &res, 1);
+	ft_putullnbr_fd(n , 1);
 }

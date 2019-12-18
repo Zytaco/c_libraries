@@ -26,7 +26,7 @@ static int	in_str(char c, char *str)
 	return (0);
 }
 
-int			ft_skipstr(const char *str, char *skip)
+int			ft_skipstr(const char *str, const char *skip)
 {
 	int i;
 
@@ -38,7 +38,7 @@ int			ft_skipstr(const char *str, char *skip)
 	return (i);
 }
 
-int			ft_skipnstr(const char *str, char *skip)
+int			ft_skipnstr(const char *str, const char *skip)
 {
 	int i;
 
