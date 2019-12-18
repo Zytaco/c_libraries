@@ -14,5 +14,5 @@
 
 void			ft_putullnbr(unsigned long long n)
 {
-	ft_putullnbr_fd(n , 1);
+	ft_putullnbr_fd(n, 1);
 }
