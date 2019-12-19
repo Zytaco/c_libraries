@@ -23,7 +23,7 @@ void			ft_putullnbr_fd(unsigned long long n, int fd)
 	int		i;
 
 	if (n == 0)
-		write(fd, '0', 1);
+		write(fd, "0", 1);
 	else
 	{
 		s[20] = '\0';

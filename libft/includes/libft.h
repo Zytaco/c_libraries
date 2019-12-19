@@ -113,11 +113,13 @@ void				*ft_memset(void *b, int c, size_t len);
 /*
 ** put-functions
 */
+void				ft_putbase_fd(int n, int base, int fd, int up_case);
+void				ft_putbase(int n, int base, int up_case);
 void				ft_putchar_fd(char c, int fd);
 void				ft_putchar(char c);
 void				ft_putendl_fd(char const *s, int fd);
 void				ft_putendl(char const *s);
-void				ft_putllbase_fd(unsigned long long n, int base,
+void				ft_putllbase_fd(long long n, int base,
 														int fd, char up_case);
 void				ft_putllnbr_fd(long long n, int fd);
 void				ft_putllnbr(long long n);

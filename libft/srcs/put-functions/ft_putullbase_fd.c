@@ -28,7 +28,7 @@ void			ft_putullbase_fd(unsigned long long n, int base, int fd,
 	if (base < 2 || base > 36)
 		return ;
 	if (n == 0)
-		write(fd, '0', 1);
+		write(fd, "0", 1);
 	else
 	{
 		s[64] = '\0';

@@ -14,8 +14,8 @@
 
 void			ft_putllnbr_fd(long long n, int fd)
 {
-	if (n == -9223372036854775808LL)
-		ft_putstr("-9223372036854775808");
+	if (n == -9223372036854775807LL)
+		ft_putstr("-9223372036854775807");
 	else if (n < 0)
 	{
 		ft_putchar_fd('-', fd);

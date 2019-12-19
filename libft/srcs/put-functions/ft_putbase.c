@@ -12,7 +12,7 @@
 
 #include "../../includes/libft.h"
 
-void	ft_putbase(int n, int base, int fd, int up_case)
+void	ft_putbase(int n, int base, int up_case)
 {
 	ft_putllbase_fd(n, base, 1, up_case);
 }

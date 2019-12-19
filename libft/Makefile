@@ -27,8 +27,10 @@ MATH-FUNCTIONS	=	abs count_digits modulo nroot power primes pythagoras sqrt\
 MEM-FUNCTIONS	= 	bzero memalloc memccpy memchr memcmp memcpy memdel memmove \
 					memset
 
-PUT-FUNCTIONS	=	putchar putchar_fd putendl putendl_fd putllnbr putnbr \
-					putnbr_fd putstr putstr_fd putullnbr
+PUT-FUNCTIONS	=	putbase_fd putbase	putchar_fd	putchar	putendl_fd\
+					putendl	putllbase_fd	putllnbr_fd	putllnbr	putnbr_fd\
+					putnbr	putstr_fd	putstr	putullbase_fd	putullnbr_fd\
+					putullnbr
 
 STR-FUNCTIONS	=	skip_whitespace stradd skipstr\
 					strcat strchr strclr strcmp strcount strcpy strdel strdup \
