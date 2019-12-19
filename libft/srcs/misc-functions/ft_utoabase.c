@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_lcm.c                                           :+:    :+:            */
+/*   ft_utoabase.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/12/16 15:04:48 by jheeresm      #+#    #+#                 */
-/*   Updated: 2019/12/16 15:04:48 by jheeresm      ########   odam.nl         */
+/*   Created: 2019/12/19 13:54:04 by jheeresm      #+#    #+#                 */
+/*   Updated: 2019/12/19 13:54:04 by jheeresm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libft.h"
 
-LL	ft_lcm(LL a, LL b)
+int		ft_countu_digits(ULL n)
 {
-	ULL i;
+	return (1);
+}
 
-	if (a == 0 || b == 0 || (a < 0 && b > 0) || (a > 0 && b < 0))
-		return (-1);
-	i = (a < b) ? (b / a) : (a / b);
-	while (i * a > 0)
+char	*ft_itoabase(LL n, int base)
+{
+	char	*s;
+	int		len;
+
+	if (base <= 1)
+		return (NULL);
+	len = ft_count_digits(n);
+	s = ft_strnew(len);
+	while (len > 0)
 	{
-		if (b % (i * a) == 0)
-			return (i * a);
-		i++;
+		len--;
+		s[len] = n % base + '0';
+		n /= base;
 	}
-	return (-1);
+	return (s);
 }

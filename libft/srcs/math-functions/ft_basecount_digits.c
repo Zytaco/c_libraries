@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_lcm.c                                           :+:    :+:            */
+/*   ft_basecount_digits.c                              :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/12/16 15:04:48 by jheeresm      #+#    #+#                 */
-/*   Updated: 2019/12/16 15:04:48 by jheeresm      ########   odam.nl         */
+/*   Created: 2019/12/19 13:59:49 by jheeresm      #+#    #+#                 */
+/*   Updated: 2019/12/19 13:59:49 by jheeresm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libft.h"
 
-LL	ft_lcm(LL a, LL b)
+int		ft_basecount_digits(ULL n, int base)
 {
-	ULL i;
+	int digits;
 
-	if (a == 0 || b == 0 || (a < 0 && b > 0) || (a > 0 && b < 0))
-		return (-1);
-	i = (a < b) ? (b / a) : (a / b);
-	while (i * a > 0)
+	if (base <= 0)
+		return (INT32_MAX);
+	else if (base == 1)
+		return (n);
+	if (n == 0)
+		return (1);
+	digits = 0;
+	while (n != 0)
 	{
-		if (b % (i * a) == 0)
-			return (i * a);
-		i++;
+		digits++;
+		n /= base;
 	}
-	return (-1);
+	return (digits);
 }

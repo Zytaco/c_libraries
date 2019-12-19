@@ -12,10 +12,10 @@
 
 #include "../../includes/libft.h"
 
-long long	ft_bcd(long long a, long long b)
+LL	ft_bcd(LL a, LL b)
 {
-	unsigned long long i;
-	unsigned long long denom;
+	ULL i;
+	ULL denom;
 
 	if (a == 0 || b == 0 || (a < 0 && b > 0) || (a > 0 && b < 0))
 		return (0);

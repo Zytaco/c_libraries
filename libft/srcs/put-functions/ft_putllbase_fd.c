@@ -52,7 +52,7 @@ static void		exceptions_u(int base, int fd)
 	ft_putstr_fd(exceptions[base - 2], fd);
 }
 
-void			ft_putllbase_fd(long long n, int base,
+void			ft_putllbase_fd(LL n, int base,
 														int fd, char up_case)
 {
 	if (base < 2 || base > 36)

@@ -17,7 +17,7 @@
 ** 11111111 11111111 11111111 11111111 11111111 11111111 11111111 11111111
 */
 
-void			ft_putullbase_fd(unsigned long long n, int base, int fd,
+void			ft_putullbase_fd(ULL n, int base, int fd,
 																char up_case)
 {
 	const char	lower[37] = "0123456789abcdefghijklmnopqrstuvwxyz";

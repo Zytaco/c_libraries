@@ -17,7 +17,7 @@
 ** 18446744073709551615
 */
 
-void			ft_putullnbr_fd(unsigned long long n, int fd)
+void			ft_putullnbr_fd(ULL n, int fd)
 {
 	char	s[21];
 	int		i;

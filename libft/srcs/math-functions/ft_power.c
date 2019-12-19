@@ -12,9 +12,9 @@
 
 #include "../../includes/libft.h"
 
-long long	ft_power(int num, int power)
+LL	ft_power(int num, int power)
 {
-	long long x;
+	LL x;
 
 	x = num;
 	if (power == 0)

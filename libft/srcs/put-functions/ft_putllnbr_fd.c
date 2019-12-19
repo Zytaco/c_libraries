@@ -12,7 +12,7 @@
 
 #include "../../includes/libft.h"
 
-void			ft_putllnbr_fd(long long n, int fd)
+void			ft_putllnbr_fd(LL n, int fd)
 {
 	if (n == -9223372036854775807LL)
 		ft_putstr("-9223372036854775807");

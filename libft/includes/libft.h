@@ -23,6 +23,9 @@
 # include <stdio.h>
 # include "get_next_line.h"
 
+# define LL long long
+# define ULL unsigned long long
+
 typedef struct		s_list
 {
 	void				*content;
@@ -84,14 +87,14 @@ t_list				*ft_lstnew(void const *content, size_t content_size);
 ** math-functions
 */
 int					ft_abs(int num);
-long long			ft_bcd(long long a, long long b);
-int					ft_count_digits(long long n);
-long long			ft_lcm(long long a, long long b);
-long long			ft_max(long long a, long long b);
-long long			ft_min(long long a, long long b);
+LL					ft_bcd(LL a, LL b);
+int					ft_count_digits(LL n);
+LL					ft_lcm(LL a, LL b);
+LL					ft_max(LL a, LL b);
+LL					ft_min(LL a, LL b);
 int					ft_modulo(int x, int mod);
 int					ft_nroot(unsigned int num, unsigned int degree);
-long long			ft_power(int num, int power);
+LL					ft_power(int num, int power);
 int					ft_isprime(int n);
 int					ft_get_next_prime(int n);
 int					ft_pythagoras(int x, int y);
@@ -119,18 +122,16 @@ void				ft_putchar_fd(char c, int fd);
 void				ft_putchar(char c);
 void				ft_putendl_fd(char const *s, int fd);
 void				ft_putendl(char const *s);
-void				ft_putllbase_fd(long long n, int base,
-														int fd, char up_case);
-void				ft_putllnbr_fd(long long n, int fd);
-void				ft_putllnbr(long long n);
+void				ft_putllbase_fd(LL n, int base, int fd, char up_case);
+void				ft_putllnbr_fd(LL n, int fd);
+void				ft_putllnbr(LL n);
 void				ft_putnbr_fd(int n, int fd);
 void				ft_putnbr(int n);
 void				ft_putstr_fd(char const *s, int fd);
 void				ft_putstr(char const *s);
-void				ft_putullbase_fd(unsigned long long n, int base,
-														int fd, char up_case);
-void				ft_putullnbr_fd(unsigned long long n, int fd);
-void				ft_putullnbr(unsigned long long n);
+void				ft_putullbase_fd(ULL n, int base, int fd, char up_case);
+void				ft_putullnbr_fd(ULL n, int fd);
+void				ft_putullnbr(ULL n);
 
 /*
 ** str-functions
@@ -161,8 +162,8 @@ int					ft_strncmp(const char *s1, const char *s2, size_t n);
 char				*ft_strncpy(char *dst, const char *src, size_t len);
 int					ft_strnequ(char const *s1, char const *s2, size_t n);
 char				*ft_strnew(size_t size);
-char				*ft_strnstr(const char *haystack,
-					const char *needle, size_t len);
+char				*ft_strnstr(const char *haystack, const char *needle,
+																size_t len);
 char				*ft_strrchr(char *s, int c);
 char				*ft_strrepeat(const char *s, int n);
 char				**ft_strsplit(char const *s, char c);
@@ -177,9 +178,9 @@ char				*ft_strtrim(char const *s);
 char				*ft_get_first_substr(char *str);
 void				ft_error(char *str);
 void				ft_free_array(void ***array);
-char				*ft_itoabase(long long n, int base);
+char				*ft_itoabase(LL n, int base);
 int					ft_get_next_line(const int fd, char **line);
 int					ft_atoi(const char *str);
-char				*ft_itoa(long long n);
+char				*ft_itoa(LL n);
 
 #endif
