@@ -117,12 +117,16 @@ void				ft_putchar_fd(char c, int fd);
 void				ft_putchar(char c);
 void				ft_putendl_fd(char const *s, int fd);
 void				ft_putendl(char const *s);
+void				ft_putllbase_fd(unsigned long long n, int base,
+														int fd, char up_case);
 void				ft_putllnbr_fd(long long n, int fd);
 void				ft_putllnbr(long long n);
 void				ft_putnbr_fd(int n, int fd);
 void				ft_putnbr(int n);
 void				ft_putstr_fd(char const *s, int fd);
 void				ft_putstr(char const *s);
+void				ft_putullbase_fd(unsigned long long n, int base,
+														int fd, char up_case);
 void				ft_putullnbr_fd(unsigned long long n, int fd);
 void				ft_putullnbr(unsigned long long n);
 
