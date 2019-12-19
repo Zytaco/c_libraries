@@ -12,7 +12,7 @@
 
 #include "../../includes/libft.h"
 
-static int	in_str(char c, char *str)
+static int	in_str(const char c, const char *str)
 {
 	int i;
 
