@@ -31,7 +31,9 @@ ULL		ft_atoullbase(const char *s, int base)
 	ULL			x;
 	int			i;
 
-	if (base <= 1)
+	if (base <= 0 || base > 36)
+		return (0ULL);
+	else if (base == 1)
 		return (ft_strlen(s));
 	x = 0;
 	while (s[0])

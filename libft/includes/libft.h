@@ -77,6 +77,7 @@ int					ft_toupper(int c);
 */
 void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstaddend(t_list **alst, t_list *new);
+void				ft_lstaddlast(t_list **alst, t_list *new);
 void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
@@ -175,14 +176,15 @@ char				*ft_strtrim(char const *s);
 /*
 ** misc-functions
 */
-char				*ft_get_first_substr(char *str);
+int					ft_atoi(const char *str);
+ULL					ft_atoullbase(const char *s, int base);
 void				ft_error(char *str);
 void				ft_free_array(void ***array);
-char				*ft_itoabase(LL n, int base);
 int					ft_get_next_line(const int fd, char **line);
-int					ft_atoi(const char *str);
 char				*ft_itoa(LL n);
-char				*ft_ulltoabase(ULL n, int base);
+char				*ft_itoabase(LL n, int base);
 char				*ft_lltoabase(LL n, int base);
+int					ft_lstlen(t_list **alst);
+char				*ft_ulltoabase(ULL n, int base);
 
 #endif
