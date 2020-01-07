@@ -81,6 +81,7 @@ void				ft_lstaddlast(t_list **alst, t_list *new);
 void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
+int					ft_lstlen(t_list **alst);
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 t_list				*ft_lstnew(void const *content, size_t content_size);
 
@@ -113,6 +114,19 @@ void				*ft_memcpy(void *dst, const void *rc, size_t n);
 void				ft_memdel(void **ap);
 void				*ft_memmove(void *dst, const void *src, size_t len);
 void				*ft_memset(void *b, int c, size_t len);
+
+/*
+** misc-functions
+*/
+int					ft_atoi(const char *str);
+ULL					ft_atoullbase(const char *s, int base);
+void				ft_error(char *str);
+void				ft_free_array(void ***array);
+int					ft_get_next_line(const int fd, char **line);
+char				*ft_itoa(LL n);
+char				*ft_itoabase(LL n, int base);
+char				*ft_lltoabase(LL n, int base);
+char				*ft_ulltoabase(ULL n, int base);
 
 /*
 ** put-functions
@@ -166,25 +180,11 @@ char				*ft_strnew(size_t size);
 char				*ft_strnstr(const char *haystack, const char *needle,
 																size_t len);
 char				*ft_strrchr(char *s, int c);
-char				*ft_strrepeat(const char *s, int n);
+char				*ft_strrepeat(const char *s, ULL n);
 char				**ft_strsplit(char const *s, char c);
 char				*ft_strstr(const char *haystack, const char *needle);
 char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strtoupper(char *str);
 char				*ft_strtrim(char const *s);
-
-/*
-** misc-functions
-*/
-int					ft_atoi(const char *str);
-ULL					ft_atoullbase(const char *s, int base);
-void				ft_error(char *str);
-void				ft_free_array(void ***array);
-int					ft_get_next_line(const int fd, char **line);
-char				*ft_itoa(LL n);
-char				*ft_itoabase(LL n, int base);
-char				*ft_lltoabase(LL n, int base);
-int					ft_lstlen(t_list **alst);
-char				*ft_ulltoabase(ULL n, int base);
 
 #endif

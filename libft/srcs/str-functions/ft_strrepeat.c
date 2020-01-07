@@ -12,12 +12,12 @@
 
 #include "../../includes/libft.h"
 
-char	*ft_strrepeat(const char *s, int n)
+char	*ft_strrepeat(const char *s, ULL n)
 {
 	char		*new;
-	int			i;
-	int			j;
-	const int	len = ft_strlen(s);
+	ULL			i;
+	ULL			j;
+	const ULL	len = ft_strlen(s);
 
 	if (!s || n <= 0)
 		return (NULL);

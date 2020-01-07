@@ -19,8 +19,8 @@ CFLAGS =	-Wall -Wextra -Werror -c
 CHAR-FUNCTIONS	=	isalnum isalpha isascii isdigit isint isprint iswhitespace \
 					tolower toupper
 
-LIST-FUNCTIONS	=	lstadd lstaddend lstaddend lstdel lstdelone lstiter lstmap \
-					lstnew
+LIST-FUNCTIONS	=	lstadd lstaddend lstaddend lstdel lstdelone lstiter lstlen \
+					lstmap lstnew
 
 MATH-FUNCTIONS	=	abs count_digits modulo nroot power primes pythagoras sqrt\
 					max min bcd lcm
@@ -40,7 +40,7 @@ STR-FUNCTIONS	=	skip_whitespace stradd skipstr\
 					strrchr strsplit strstr strsub strtoupper strtrim strrepeat
 
 MISC-FUNCTIONS	=	atoi atoullbase error free_array get_next_line itoa \
-					itoabase lltoabase lstlen ulltoabase
+					itoabase lltoabase ulltoabase
 
 SOURCES			=	$(CHAR-FUNCTIONS:%=srcs/char-functions/ft_%) \
 					$(LIST-FUNCTIONS:%=srcs/list-functions/ft_%) \
