@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strlen.c                                        :+:    :+:            */
+/*   ft_strprepp.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/01/09 07:13:31 by jheeresm      #+#    #+#                 */
-/*   Updated: 2019/01/29 16:08:10 by jheeresm      ########   odam.nl         */
+/*   Created: 2020/01/07 15:22:46 by jheeresm      #+#    #+#                 */
+/*   Updated: 2020/01/07 15:22:46 by jheeresm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libft.h"
 
-size_t	ft_strlen(const char *str)
+char	*ft_strprepp(const char *pre, char **s)
 {
-	size_t i;
+	char		*new;
+	const int	pre_len = ft_strlen(pre);
+	const int	s_len = ft_strlen(*s);
 
-	if (!str)
-		return (0);
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+	if (!s)
+		return (NULL);
+	if (!pre || !*s)
+		return (*s);
+	new = ft_strnew(pre_len + s_len);
+	ft_strcpy(new, pre);
+	ft_strcpy(new + pre_len, *s);
+	new[pre_len + s_len] = '\0';
+	free(*s);
+	*s = NULL;
+	return (*s);
 }

@@ -35,9 +35,10 @@ PUT-FUNCTIONS	=	putbase_fd putbase	putchar_fd	putchar	putendl_fd\
 
 STR-FUNCTIONS	=	skip_whitespace stradd skipstr\
 					strcat strchr strclr strcmp strcount strcpy strdel strdup \
-					strequ striter striteri strjoin strlcat strlen strmap \
-					strmapi strncat strncmp strncpy strnequ strnew strnstr \
-					strrchr strsplit strstr strsub strtoupper strtrim strrepeat
+					strequ strins striter striteri strjoin strlcat strlen \
+					strlower strmap strmapi strncat strncmp strncpy strnequ \
+					strnew strnstr strprepp strrchr strsplit strstr strsub \
+					strtoupper strtrim strrepeat strupper
 
 MISC-FUNCTIONS	=	atoi atoullbase error free_array get_next_line itoa \
 					itoabase lltoabase ulltoabase

@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strlen.c                                        :+:    :+:            */
+/*   ft_strapp.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/01/09 07:13:31 by jheeresm      #+#    #+#                 */
-/*   Updated: 2019/01/29 16:08:10 by jheeresm      ########   odam.nl         */
+/*   Created: 2020/01/07 15:39:49 by jheeresm      #+#    #+#                 */
+/*   Updated: 2020/01/07 15:39:49 by jheeresm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libft.h"
 
-size_t	ft_strlen(const char *str)
+char	*ft_strapp(char **s, const char *app)
 {
-	size_t i;
+	char		*new;
+	const int	app_len = ft_strlen(app);
+	const int	s_len = ft_strlen(*s);
 
-	if (!str)
-		return (0);
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+	if (!s)
+		return (NULL);
+	if (!app || !*s)
+		return (*s);
+	new = ft_strnew(s_len + app_len);
+	ft_strcpy(new, *s);
+	ft_strcpy(new + s_len, app);
+	new[s_len + app_len] = '\0';
+	free(*s);
+	*s = NULL;
+	return (*s);
 }

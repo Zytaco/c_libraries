@@ -1,25 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strlen.c                                        :+:    :+:            */
+/*   ft_printf_perc.c                                   :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/01/09 07:13:31 by jheeresm      #+#    #+#                 */
-/*   Updated: 2019/01/29 16:08:10 by jheeresm      ########   odam.nl         */
+/*   Created: 2019/12/17 12:43:30 by jheeresm      #+#    #+#                 */
+/*   Updated: 2019/12/17 12:43:30 by jheeresm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/libft.h"
-
-size_t	ft_strlen(const char *str)
-{
-	size_t i;
-
-	if (!str)
-		return (0);
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
+#include "ft_printf.h"
