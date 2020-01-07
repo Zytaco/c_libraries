@@ -182,5 +182,7 @@ char				*ft_itoabase(LL n, int base);
 int					ft_get_next_line(const int fd, char **line);
 int					ft_atoi(const char *str);
 char				*ft_itoa(LL n);
+char				*ft_ulltoabase(ULL n, int base);
+char				*ft_lltoabase(LL n, int base);
 
 #endif

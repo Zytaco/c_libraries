@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_tolower.c                                       :+:    :+:            */
+/*   ft_lltoabase.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/01/12 15:30:46 by jheeresm      #+#    #+#                 */
-/*   Updated: 2019/01/12 15:31:49 by jheeresm      ########   odam.nl         */
+/*   Created: 2020/01/07 09:47:22 by jheeresm      #+#    #+#                 */
+/*   Updated: 2020/01/07 09:47:22 by jheeresm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_tolower(int c)
+#include "../../includes/libft.h"
+
+char	*ft_lltoabase(LL n, int base)
 {
-	if ('A' <= c && c <= 'Z')
-		return (c - 'A' + 'a');
-	return (c);
+	if (n < 0)
+		return (ft_strjoin("-", ft_ulltoabase((ULL)-n, base)));
+	else
+		return (ft_ulltoabase((ULL)n, base));
 }
