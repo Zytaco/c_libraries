@@ -45,9 +45,8 @@ MISC-FUNCTIONS	=	atoi atoullbase error free_array get_next_line itoa \
 
 FT_PRINTF_M		=	srcs/ft_printf/ft_printf.o
 FT_PRINTF_H		=	srcs/ft_printf/ft_printf.h
-FT_PRINTF_NAMES	=	char flags int perc pointer str uint
+FT_PRINTF_NAMES	=	autoexp char exactfloat exp flags float int num perc pointer str uint
 FT_PRINTF_C		=	$(FT_PRINTF:%=srcs/ft_printf_%.c) $(FT_PRINTF_M:%o=%c)
-FT_PRINTF_O		=	$(FT_PRINTF_MAIN:%.c=%.o)
 
 SOURCES			=	$(CHAR-FUNCTIONS:%=srcs/char-functions/ft_%) \
 					$(LIST-FUNCTIONS:%=srcs/list-functions/ft_%) \
@@ -55,7 +54,8 @@ SOURCES			=	$(CHAR-FUNCTIONS:%=srcs/char-functions/ft_%) \
 					$(MEM-FUNCTIONS:%=srcs/mem-functions/ft_%) \
 					$(PUT-FUNCTIONS:%=srcs/put-functions/ft_%) \
 					$(STR-FUNCTIONS:%=srcs/str-functions/ft_%) \
-					$(MISC-FUNCTIONS:%=srcs/misc-functions/ft_%)
+					$(MISC-FUNCTIONS:%=srcs/misc-functions/ft_%) \
+					srcs/ft_printf/ft_printf
 
 CFILE			=	$(SOURCES:%=%.c)
 
@@ -68,8 +68,8 @@ $(NAME): $(OBJECTS)
 		@ ranlib $(NAME)
 		@ echo "\033[36mLIBFT: COMPILED\033[0m"
 
-$(FT_PRINTF_M): $(FT_PRINTF_C) $(FT_PRINTF_H)
-		@ $(CC) $(CFLAGS) $(FT_PRINTF_O) -o $(FT_PRINTF_M)
+srcs/ft_printf/ft_printf.o: $(FT_PRINTF_C) $(FT_PRINTF_H)
+		@ $(CC) $(CFLAGS) $(FT_PRINTF_C) -o $(FT_PRINTF_M)
 
 %.o: %.c
 		@ $(CC) $(CFLAGS) $< -o $@

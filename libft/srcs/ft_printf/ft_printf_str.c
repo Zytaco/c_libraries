@@ -20,12 +20,12 @@ static void	ft_printf_str_flag_cor(t_flags *f)
 		f->zero = 0;
 }
 
-char		*ft_printf_str(t_flags *flags)
+char		*ft_printf_str(t_flags *flags, va_list list)
 {
 	char *arg;
 
 	ft_printf_str_flag_cor(flags);
 	if (flags->smallest)
-		arg = va_arg(flags->list, char *);
+		arg = va_arg(list, char *);
 	return (arg);
 }

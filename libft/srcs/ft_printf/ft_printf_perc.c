@@ -20,7 +20,7 @@ static void	ft_printf_perc_flag_cor(t_flags *f)
 		f->zero = 0;
 }
 
-char		*ft_printf_perc(t_flags *flags)
+char		*ft_printf_perc(t_flags *flags, va_list list)
 {
 	char *arg;
 

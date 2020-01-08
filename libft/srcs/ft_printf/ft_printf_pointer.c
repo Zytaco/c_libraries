@@ -21,11 +21,11 @@ static void	ft_printf_point_flag_cor(t_flags *f)
 		f->zero = 0;
 }
 
-char		*ft_printf_point(t_flags *flags)
+char		*ft_printf_point(t_flags *flags, va_list list)
 {
 	char *arg;
 
 	ft_printf_point_flag_cor(flags);
-	arg = ft_ulltoabase(va_arg(flags->list, unsigned int), 16);
+	arg = ft_ulltoabase(va_arg(list, unsigned int), 16);
 	return (arg);
 }

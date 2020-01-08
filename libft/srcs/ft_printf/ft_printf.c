@@ -12,7 +12,26 @@
 
 #include "ft_printf.h"
 
-static int		flag_checks_one(t_flags *fl, char *format, int i)
+static int		flag_checks_two(t_flags *fl, const char *format, int i)
+{
+	if (format[i] == 'L')
+		fl->float_biggest = 1;
+	else if (ft_isdigit(format[i]) && format[i - 1] != '.')
+	{
+		fl->width_f = 1;
+		fl->width = ft_atoi(format + i);
+	}
+	else if (format[i] == '.' && ft_isdigit(format[i + 1]))
+	{
+		fl->prec_f = 1;
+		fl->prec = ft_atoi(format + i + 1);
+	}
+	else
+		return (0);
+	return (1);
+}
+
+static int		flag_checks_one(t_flags *fl, const char *format, int i)
 {
 	if (format[i] == '#')
 		fl->hash = 1;
@@ -37,55 +56,36 @@ static int		flag_checks_one(t_flags *fl, char *format, int i)
 	return (1);
 }
 
-static int		flag_checks_two(t_flags *fl, char *format, int i)
-{
-	if (format[i] == 'L')
-		fl->float_biggest = 1;
-	else if (ft_isdigit(format[i]) && format[i - 1] != '.')
-	{
-		fl->width_f = 1;
-		fl->width = ft_atoi(format + i);
-	}
-	else if (format[i] == '.' && ft_isdigit(format[i + 1]))
-	{
-		fl->prec_f = 1;
-		fl->prec = ft_atoi(format + i + 1);
-	}
-	else
-		return (0);
-	return (1);
-}
-
-char			*ft_printf_get_arg(t_flags *flags, va_list list, char type)
+char			*ft_printf_get_arg(t_flags *flags, char type, va_list list)
 {
 	if (type == 'd' || type == 'i' || type == 'D')
-		return (ft_printf_int(flags, 10, 1));
+		return (ft_printf_int(flags, 10, 1, list));
 	else if (type == 'o' || type == 'O')
-		return (ft_printf_uint(flags, 8, 1));
+		return (ft_printf_uint(flags, 8, 1, list));
 	else if (type == 'u' || type == 'U')
-		return (ft_printf_uint(flags, 10, 1));
+		return (ft_printf_uint(flags, 10, 1, list));
 	else if (type == 'x' || type == 'X')
-		return (ft_printf_uint(flags, 16, type == 'X' ? 1 : 0));
+		return (ft_printf_uint(flags, 16, type == 'X' ? 1 : 0, list));
 	else if (type == 'e' || type == 'E')
-		return (ft_strdup(""));
+		return (ft_printf_exp(flags, list));
 	else if (type == 'f' || type == 'F')
-		return (ft_strdup(""));
+		return (ft_printf_float(flags, list));
 	else if (type == 'g' || type == 'G')
-		return (ft_strdup(""));
+		return (ft_printf_autoexp(flags, list));
 	else if (type == 'a' || type == 'A')
-		return (ft_strdup(""));
+		return (ft_printf_exactfloat(flags, list));
 	else if (type == 'c' || type == 'C')
-		return (ft_printf_char(flags));
+		return (ft_printf_char(flags, list));
 	else if (type == 's' || type == 'S')
-		return (ft_printf_str(flags));
+		return (ft_printf_str(flags, list));
 	else if (type == 'p')
-		return (ft_printf_pointer(flags));
+		return (ft_printf_pointer(flags, list));
 	else if (type == 'n')
-		return (ft_strdup(""));
-	return (ft_printf_perc(flags));
+		return (ft_printf_num(flags, list));
+	return (ft_printf_perc(flags, list));
 }
 
-void			get_flags(const char *f, int i, t_flags flags)
+void			get_flags(const char *f, int i, t_flags flags, va_list list)
 {
 	char *arg;
 
@@ -98,12 +98,12 @@ void			get_flags(const char *f, int i, t_flags flags)
 	if (!f[i])
 		return ;
 	flags.type = f[i];
-	arg = ft_printf_get_arg(&flags, flags.list, f[i]);
+	arg = ft_printf_get_arg(&flags, f[i], list);
 	arg = ft_printf_hash(arg, flags);
 	arg = ft_printf_plus(arg, flags);
 	arg = ft_printf_space(arg, flags);
 	arg = ft_printf_prec(arg, flags);
-	arg = ft_printf_width(arg, flags);
+	arg = ft_printf_width(arg, ft_strlen(arg), flags);
 	*(flags.count) += ft_strlen(arg);
 	ft_putstr(arg);
 	free(arg);
@@ -121,11 +121,8 @@ int				ft_printf(const char *format, ...)
 	while (format[i])
 	{
 		if (format[i] == '%')
-		{
-			get_flags(format, i + 1,
-			(t_flags){0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-														&count, list, '\0'});
-		}
+			get_flags(format, i + 1, (t_flags){0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			0, 0, 0, 0, &count, '\0'}, list);
 		else
 		{
 			write(1, format + i, 1);

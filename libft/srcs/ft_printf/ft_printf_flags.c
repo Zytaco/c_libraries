@@ -80,7 +80,7 @@ char			*ft_printf_prec(char *arg, t_flags flags)
 	return (arg);
 }
 
-char			*ft_printf_add_width(char *arg, int len, t_flags flags)
+char			*ft_printf_width(char *arg, int len, t_flags flags)
 {
 	char	*filler;
 
