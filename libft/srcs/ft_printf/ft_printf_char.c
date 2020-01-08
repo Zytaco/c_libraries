@@ -25,6 +25,6 @@ char		*ft_printf_char(t_flags *flags, va_list list)
 	char *arg;
 
 	ft_printf_char_flag_cor(flags);
-	arg = ft_strdup((char*){va_arg(list, signed char), '\0'});
+	arg = ft_strdup((char[2]){(signed char)va_arg(list, int), '\0'});
 	return (arg);
 }

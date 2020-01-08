@@ -42,8 +42,8 @@ typedef struct	s_flags
 	char		float_biggest;
 	char		width_f;
 	char		prec_f;
-	int			width;
-	int			prec;
+	size_t		width;
+	size_t		prec;
 	int			*count;
 	char		type;
 }				t_flags;
@@ -63,7 +63,7 @@ char			*ft_printf_char(t_flags *flags, va_list list);
 char			*ft_printf_str(t_flags *flags, va_list list);
 char			*ft_printf_pointer(t_flags *flags, va_list list);
 char			*ft_printf_num(t_flags *flags, va_list list);
-char			*ft_printf_perc(t_flags *flags, va_list list);
+char			*ft_printf_perc(t_flags *flags);
 
 /*
 ** flags
@@ -72,6 +72,6 @@ char			*ft_printf_hash(char *arg, t_flags flags);
 char			*ft_printf_plus(char *arg, t_flags flags);
 char			*ft_printf_space(char *arg, t_flags flags);
 char			*ft_printf_prec(char *arg, t_flags flags);
-char			*ft_printf_width(char *arg, int len, t_flags flags);
+char			*ft_printf_width(char *arg, size_t len, t_flags flags);
 
 #endif

@@ -12,9 +12,11 @@
 
 #include "ft_printf.h"
 
-char		*ft_printf_char(t_flags *flags, va_list list)
+char		*ft_printf_num(t_flags *flags, va_list list)
 {
-	char *arg;
+	int		*n;
 
-	return (ft_strdup(" ERROR(n) "));
+	n = va_arg(list, int*);
+	*n = *(flags->count);
+	return (NULL);
 }

@@ -26,9 +26,9 @@ char		*ft_printf_int(t_flags *flags, int base, char upper, va_list list)
 
 	ft_printf_int_flag_cor(flags);
 	if (flags->smallest)
-		arg = ft_lltoabase(va_arg(list, signed char), base);
+		arg = ft_lltoabase((char)va_arg(list, int), base);
 	else if (flags->small)
-		arg = ft_lltoabase(va_arg(list, short), base);
+		arg = ft_lltoabase((short)va_arg(list, int), base);
 	else if (flags->big)
 		arg = ft_lltoabase(va_arg(list, long), base);
 	else if (flags->biggest)

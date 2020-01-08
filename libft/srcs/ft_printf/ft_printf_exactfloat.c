@@ -14,7 +14,5 @@
 
 char		*ft_printf_exactfloat(t_flags *flags, va_list list)
 {
-	char *arg;
-
-	return (ft_strdup(" ERROR(a/A) "));
+	return (ft_printf_float(flags, list));
 }

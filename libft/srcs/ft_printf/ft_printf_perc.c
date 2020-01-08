@@ -20,11 +20,11 @@ static void	ft_printf_perc_flag_cor(t_flags *f)
 		f->zero = 0;
 }
 
-char		*ft_printf_perc(t_flags *flags, va_list list)
+char		*ft_printf_perc(t_flags *flags)
 {
 	char *arg;
 
-	ft_printf_char_flag_cor(flags);
-	arg = ft_strdup((char*){'%', '\0'});
+	ft_printf_perc_flag_cor(flags);
+	arg = ft_strdup((char[2]){'%', '\0'});
 	return (arg);
 }

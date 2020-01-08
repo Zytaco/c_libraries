@@ -62,12 +62,11 @@ char			*ft_printf_space(char *arg, t_flags flags)
 		if (arg[i] != '-' && arg[i] != '+')
 			arg = ft_strins(&arg, "+", i);
 	}
+	return (arg);
 }
 
 char			*ft_printf_prec(char *arg, t_flags flags)
 {
-	int dot;
-
 	if (!flags.prec_f)
 		return (arg);
 	if (flags.type == 'd' || flags.type == 'i' || flags.type == 'o' ||
@@ -80,11 +79,11 @@ char			*ft_printf_prec(char *arg, t_flags flags)
 	return (arg);
 }
 
-char			*ft_printf_width(char *arg, int len, t_flags flags)
+char			*ft_printf_width(char *arg, size_t len, t_flags flags)
 {
 	char	*filler;
 
-	if (len <= flags.width)
+	if (len <= flags.width || len < 0)
 		return (arg);
 	if (flags.zero &&
 	!(flags.type == 'd' || flags.type == 'i' || flags.type == 'o' ||

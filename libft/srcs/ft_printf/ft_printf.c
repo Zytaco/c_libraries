@@ -82,7 +82,7 @@ char			*ft_printf_get_arg(t_flags *flags, char type, va_list list)
 		return (ft_printf_pointer(flags, list));
 	else if (type == 'n')
 		return (ft_printf_num(flags, list));
-	return (ft_printf_perc(flags, list));
+	return (ft_printf_perc(flags));
 }
 
 void			get_flags(const char *f, int i, t_flags flags, va_list list)
@@ -99,6 +99,8 @@ void			get_flags(const char *f, int i, t_flags flags, va_list list)
 		return ;
 	flags.type = f[i];
 	arg = ft_printf_get_arg(&flags, f[i], list);
+	if (!arg)
+		return ;
 	arg = ft_printf_hash(arg, flags);
 	arg = ft_printf_plus(arg, flags);
 	arg = ft_printf_space(arg, flags);

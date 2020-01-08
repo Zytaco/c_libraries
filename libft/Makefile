@@ -33,7 +33,7 @@ PUT-FUNCTIONS	=	putbase_fd putbase	putchar_fd	putchar	putendl_fd\
 					putnbr	putstr_fd	putstr	putullbase_fd	putullnbr_fd\
 					putullnbr
 
-STR-FUNCTIONS	=	skip_whitespace stradd skipstr\
+STR-FUNCTIONS	=	skip_whitespace stradd strapp skipstr\
 					strcat strchr strclr strcmp strcount strcpy strdel strdup \
 					strequ strins striter striteri strjoin strlcat strlen \
 					strlower strmap strmapi strncat strncmp strncpy strnequ \
@@ -43,10 +43,9 @@ STR-FUNCTIONS	=	skip_whitespace stradd skipstr\
 MISC-FUNCTIONS	=	atoi atoullbase error free_array get_next_line itoa \
 					itoabase lltoabase ulltoabase
 
-FT_PRINTF_M		=	srcs/ft_printf/ft_printf.o
+FT_PRINTF_SUB	=	autoexp char exactfloat exp flags float int num perc pointer str uint
+FT_PRINTF		=	$(FT_PRINTF_SUB:%=printf_%) printf
 FT_PRINTF_H		=	srcs/ft_printf/ft_printf.h
-FT_PRINTF_NAMES	=	autoexp char exactfloat exp flags float int num perc pointer str uint
-FT_PRINTF_C		=	$(FT_PRINTF:%=srcs/ft_printf_%.c) $(FT_PRINTF_M:%o=%c)
 
 SOURCES			=	$(CHAR-FUNCTIONS:%=srcs/char-functions/ft_%) \
 					$(LIST-FUNCTIONS:%=srcs/list-functions/ft_%) \
@@ -55,7 +54,7 @@ SOURCES			=	$(CHAR-FUNCTIONS:%=srcs/char-functions/ft_%) \
 					$(PUT-FUNCTIONS:%=srcs/put-functions/ft_%) \
 					$(STR-FUNCTIONS:%=srcs/str-functions/ft_%) \
 					$(MISC-FUNCTIONS:%=srcs/misc-functions/ft_%) \
-					srcs/ft_printf/ft_printf
+					$(FT_PRINTF:%=srcs/ft_printf/ft_%)
 
 CFILE			=	$(SOURCES:%=%.c)
 
@@ -68,8 +67,8 @@ $(NAME): $(OBJECTS)
 		@ ranlib $(NAME)
 		@ echo "\033[36mLIBFT: COMPILED\033[0m"
 
-srcs/ft_printf/ft_printf.o: $(FT_PRINTF_C) $(FT_PRINTF_H)
-		@ $(CC) $(CFLAGS) $(FT_PRINTF_C) -o $(FT_PRINTF_M)
+srcs/ft_printf/%.o: srcs/ft_printf%.c $(FT_PRINTF_H)
+		@ $(CC) $(CFLAGS) $< -o $@
 
 %.o: %.c
 		@ $(CC) $(CFLAGS) $< -o $@

@@ -14,7 +14,5 @@
 
 char		*ft_printf_exp(t_flags *flags, va_list list)
 {
-	char *arg;
-
-	return (ft_strdup(" ERROR(e/E) "));
+	return (ft_printf_float(flags, list));
 }
