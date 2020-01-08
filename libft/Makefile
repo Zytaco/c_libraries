@@ -43,7 +43,7 @@ STR-FUNCTIONS	=	skip_whitespace stradd strapp skipstr\
 MISC-FUNCTIONS	=	atoi atoullbase error free_array get_next_line itoa \
 					itoabase lltoabase ulltoabase
 
-FT_PRINTF_SUB	=	autoexp char exactfloat exp flags float int num perc pointer str uint
+FT_PRINTF_SUB	=	char flags float int num perc pointer str uint
 FT_PRINTF		=	$(FT_PRINTF_SUB:%=printf_%) printf
 FT_PRINTF_H		=	srcs/ft_printf/ft_printf.h
 

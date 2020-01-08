@@ -55,10 +55,7 @@ char			*ft_printf_int(t_flags *flags, int base, char upper,
 																va_list list);
 char			*ft_printf_uint(t_flags *flags, int base, char upper,
 																va_list list);
-char			*ft_printf_exp(t_flags *flags, va_list list);
 char			*ft_printf_float(t_flags *flags, va_list list);
-char			*ft_printf_autoexp(t_flags *flags, va_list list);
-char			*ft_printf_exactfloat(t_flags *flags, va_list list);
 char			*ft_printf_char(t_flags *flags, va_list list);
 char			*ft_printf_str(t_flags *flags, va_list list);
 char			*ft_printf_pointer(t_flags *flags, va_list list);
