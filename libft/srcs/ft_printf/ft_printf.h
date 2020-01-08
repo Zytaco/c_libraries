@@ -49,11 +49,20 @@ typedef struct	s_flags
 	char		type;
 }				t_flags;
 
-void			ft_printf_char(t_flags flags);
-void			ft_printf_str(t_flags flags);
-void			ft_printf_pointer(t_flags flags);
-void			ft_printf_int(t_flags flags, int base, char upper);
-void			ft_printf_uint(t_flags flags, int base, char upper);
-void			ft_printf_perc(t_flags flags);
+char			*ft_printf_char(t_flags *flags);
+char			*ft_printf_str(t_flags *flags);
+char			*ft_printf_pointer(t_flags *flags);
+char			*ft_printf_int(t_flags *flags, int base, char upper);
+char			*ft_printf_uint(t_flags *flags, int base, char upper);
+char			*ft_printf_perc(t_flags *flags);
+
+/*
+** flags
+*/
+char			*ft_printf_hash(char *arg, t_flags flags);
+char			*ft_printf_plus(char *arg, t_flags flags);
+char			*ft_printf_space(char *arg, t_flags flags);
+char			*ft_printf_prec(char *arg, t_flags flags);
+char			*ft_printf_add_width(char *arg, int len, t_flags flags);
 
 #endif

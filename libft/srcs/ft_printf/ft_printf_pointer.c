@@ -14,55 +14,18 @@
 
 static void	ft_printf_point_flag_cor(t_flags *f)
 {
-	f->space = 0;
-	f->plus = 0;
+	f->hash = 1;
+	if (f->smallest + f->small + f->big + f->biggest > 1)
+		ft_error("ERROR: ft_printf: multiple size flags are active on a %s.");
 	if (f->minus && f->zero)
 		f->zero = 0;
 }
 
-void		ft_printf_point_width(t_flags flags, int arg_len, char bef)
+char		*ft_printf_point(t_flags *flags)
 {
-	char c;
+	char *arg;
 
-	if (flags.minus && bef || (!flags.minus && !bef))
-		return ;
-	if (flags.zero)
-		c = '0';
-	else
-		c = ' ';
-	while (flags.width > arg_len)
-	{
-		write(1, c, 1);
-		arg_len++;
-	}
-}
-
-char		ft_printf_point_getstr(t_flags flags,  char upper)
-{
-	char	*s;
-	ULL		a;
-
-	a = va_arg(flags.list, void*);
-	s = ft_ulltoabase(ft_printf_point_get_arg(flags), 16);
-	if (flags.prec_f)
-		s[flags.prec] = '\0';
-	ft_strprepp("0X", &s);
-	if (!upper)
-		ft_strlower(s);
-	return (s);	
-}
-
-void		ft_printf_point(t_flags flags, char upper)
-{
-	char	*s;
-	int		arg_len;
-
-	s = ft_printf_point_getstr(flags, upper);
-	ft_printf_point_flag_cor(&flags);
-	arg_len = ft_strlen(s);
-	ft_printf_point_width(flags, arg_len, 1);
-	*(flags.count) += arg_len;
-	ft_putstr(s);
-	free(s);
-	ft_printf_point_width(flags, arg_len, 0);
+	ft_printf_point_flag_cor(flags);
+	arg = ft_ulltoabase(va_arg(flags->list, unsigned int), 16);
+	return (arg);
 }

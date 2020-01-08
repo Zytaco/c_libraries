@@ -32,7 +32,7 @@ char	*min_exceptions(base)
 	if (base < 1 || base > 36)
 		return (NULL);
 	else if (base == 1)
-		return (ft_strjoin("-", ft_strrepeat("0", 9223372036854775807)));
+		return (ft_strjoin("-", ft_strrepeat("0", 9223372036854775807LL)));
 	else
 		return (ft_strdup(s[base - 2]));
 }
@@ -42,7 +42,7 @@ char	*ft_lltoabase(LL n, int base)
 	if (n == -9223372036854775807LL)
 		return (min_exceptions(base));
 	else if (n < 0)
-		return (ft_strjoin("-", ft_ulltoabase((ULL)(-n), base)));
+		return (ft_strjoin("-", ft_ulltoabase((ULL)(-1 * n), base)));
 	else
 		return (ft_ulltoabase((ULL)n, base));
 }

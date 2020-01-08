@@ -12,105 +12,6 @@
 
 #include "ft_printf.h"
 
-char			*ft_printf_space(char *arg, t_flags flags)
-{
-	int i;
-
-	if (!flags.space || flags.plus)
-		return (arg);
-	if (flags.type == 'a'  || flags.type == 'A' || flags.type == 'd' ||
-	flags.type == 'e' || flags.type == 'E' || flags.type == 'f' ||
-	flags.type == 'F' || flags.type == 'g' || flags.type == 'G' ||
-	flags.type == 'i')
-	{
-		i = ft_skipstr(arg, "0 ");
-		if (arg[i] != '-' && arg[i] != '+')
-			arg = ft_strins(&arg, "+", i);
-	}
-}
-
-char			*ft_printf_plus(char *arg, t_flags flags)
-{
-	int i;
-
-	if (!flags.plus)
-		return (arg);
-	if (flags.type == 'a'  || flags.type == 'A' || flags.type == 'd' ||
-	flags.type == 'e' || flags.type == 'E' || flags.type == 'f' ||
-	flags.type == 'F' || flags.type == 'g' || flags.type == 'G' ||
-	flags.type == 'i')
-	{
-		i = ft_skipstr(arg, "0 ");
-		if (arg[i] != '-' && arg[i] != '+')
-			arg = ft_strins(&arg, "+", i);
-	}
-	return (arg);
-}
-
-char			*ft_printf_hash(char *arg, t_flags flags)
-{
-	if (!flags.hash)
-		return (arg);
-	if (flags.type == 'o')
-		arg = ft_strprepp("0", &arg);
-	else if (flags.type == 'x')
-		arg = ft_strprepp("0x", &arg);
-	else if (flags.type == 'X')
-		arg = ft_strprepp("0X", &arg);
-	else if ((flags.type == 'a' || flags.type == 'A' || flags.type == 'e' ||
-	flags.type == 'E' || flags.type == 'f' || flags.type == 'F' ||
-	flags.type == 'g' || flags.type == 'G') && !ft_strchr(arg, '.'))
-		arg = ft_strapp(&arg, ".");
-	return (arg);
-}
-
-char			*ft_printf_prec(char *arg, t_flags flags)
-{
-	int dot;
-
-	if (!flags.prec_f)
-		return (arg);
-	if (flags.type == 'd' || flags.type == 'i' || flags.type == 'o' ||
-	flags.type == 'u' || flags.type == 'x' || flags.width == 'X')
-	{
-		if (ft_strlen(arg) < flags.prec)
-			arg = ft_strprepp(ft_strrepeat("0",
-										flags.prec - ft_strlen(arg)), &arg);
-	}
-	return (arg);
-}
-
-char			*ft_printf_add_width(char *arg, int len, t_flags flags)
-{
-	char	*filler;
-
-	if (len <= flags.width)
-		return (arg);
-	if (flags.zero && !(flags.type == 'd' || flags.type == 'i'
-	|| flags.type == 'o' || flags.type == 'u' || flags.type == 'x' ||
-	flags.width == 'X'))
-		filler = ft_strrepeat("0", flags.width - len);
-	else
-		filler = ft_strrepeat(" ", flags.width - len);
-	if (flags.minus)
-		arg = ft_strprepp(filler, &arg);
-	else
-		arg = ft_strapp(&arg, filler);
-	return (arg);
-}
-
-void			ft_printf_print_w_p(char *arg, int *count, t_flags flags)
-{
-	int		len;
-
-	arg = ft_printf_prec(arg, flags);
-	arg = ft_printf_add_width(arg, ft_strlen(arg), flags);
-	arg = ft_printf_hash(arg, flags);
-	*count += ft_strlen(arg);
-	ft_putstr(arg);
-	free(arg);
-}
-
 static int		flag_checks_one(t_flags *fl, char *format, int i)
 {
 	if (format[i] == '#')
@@ -155,31 +56,57 @@ static int		flag_checks_two(t_flags *fl, char *format, int i)
 	return (1);
 }
 
-void			get_flags(const char *format, int i, t_flags flags)
+char			*ft_printf_get_arg(t_flags *flags, va_list list, char type)
 {
-	while (format[i])
-	{
-		if (format[i] == 'c')
-			ft_printf_char(flags);
-		else if (format[i] == 's')
-			ft_printf_str(flags);
-		else if (format[i] == 'p')
-			ft_printf_str(flags);
-		else if (format[i] == 'd' || format[i] == 'i')
-			ft_printf_str(flags);
-		else if (format[i] == 'o')
-			ft_printf_str(flags);
-		else if (format[i] == 'u')
-			ft_printf_str(flags);
-		else if (format[i] == 'x')
-			ft_printf_str(flags);
-		else if (format[i] == 'X')
-			ft_printf_str(flags);
-		else if (flag_checks_one(&flags, format, i))
-			i++;
-		else
-			return ;
-	}
+	if (type == 'd' || type == 'i' || type == 'D')
+		return (ft_printf_int(flags, 10, 1));
+	else if (type == 'o' || type == 'O')
+		return (ft_printf_uint(flags, 8, 1));
+	else if (type == 'u' || type == 'U')
+		return (ft_printf_uint(flags, 10, 1));
+	else if (type == 'x' || type == 'X')
+		return (ft_printf_uint(flags, 16, type == 'X' ? 1 : 0));
+	else if (type == 'e' || type == 'E')
+		return (ft_strdup(""));
+	else if (type == 'f' || type == 'F')
+		return (ft_strdup(""));
+	else if (type == 'g' || type == 'G')
+		return (ft_strdup(""));
+	else if (type == 'a' || type == 'A')
+		return (ft_strdup(""));
+	else if (type == 'c' || type == 'C')
+		return (ft_printf_char(flags));
+	else if (type == 's' || type == 'S')
+		return (ft_printf_str(flags));
+	else if (type == 'p')
+		return (ft_printf_pointer(flags));
+	else if (type == 'n')
+		return (ft_strdup(""));
+	return (ft_printf_perc(flags));
+}
+
+void			get_flags(const char *f, int i, t_flags flags)
+{
+	char *arg;
+
+	while (f[i] && f[i] != 'd' && f[i] != 'i' && f[i] != 'D' && f[i] != 'o' &&
+	f[i] != 'O' && f[i] != 'u' && f[i] != 'U' && f[i] != 'x' && f[i] != 'X' &&
+	f[i] != 'e' && f[i] != 'E' && f[i] != 'f' && f[i] != 'F' && f[i] != 'g' &&
+	f[i] != 'G' && f[i] != 'a' && f[i] != 'A' && f[i] != 'c' && f[i] != 'C' &&
+	f[i] != 's' && f[i] != 'S' && f[i] != 'p' && f[i] != 'n' && f[i] != '%')
+		flag_checks_one(&flags, f, i);
+	if (!f[i])
+		return ;
+	flags.type = f[i];
+	arg = ft_printf_get_arg(&flags, flags.list, f[i]);
+	arg = ft_printf_hash(arg, flags);
+	arg = ft_printf_plus(arg, flags);
+	arg = ft_printf_space(arg, flags);
+	arg = ft_printf_prec(arg, flags);
+	arg = ft_printf_width(arg, flags);
+	*(flags.count) += ft_strlen(arg);
+	ft_putstr(arg);
+	free(arg);
 }
 
 int				ft_printf(const char *format, ...)
@@ -196,7 +123,8 @@ int				ft_printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			get_flags(format, i + 1,
-			(t_flags){0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, &count, list});
+			(t_flags){0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+														&count, list, '\0'});
 		}
 		else
 		{

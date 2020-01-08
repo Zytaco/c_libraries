@@ -20,38 +20,12 @@ static void	ft_printf_str_flag_cor(t_flags *f)
 		f->zero = 0;
 }
 
-void		ft_printf_char_width(t_flags flags, int arg_len, char bef)
+char		*ft_printf_str(t_flags *flags)
 {
-	char c;
+	char *arg;
 
-	if (flags.minus && bef || (!flags.minus && !bef))
-		return ;
-	if (flags.zero)
-		c = '0';
-	else
-		c = ' ';
-	while (flags.width > arg_len)
-	{
-		write(1, c, 1);
-		arg_len++;
-	}
-}
-
-void		ft_printf_str(t_flags f)
-{
-	char	*s;
-	int		arg_len;
-
-	ft_printf_str_flag_cor(&f);
-	s = va_arg(f.list, char*);
-	arg_len = ft_strlen(s);
-	if (arg_len > f.prec)
-	{
-		s[f.prec] = '\0';
-		arg_len = f.prec;
-	}
-	(*f.count) += ft_max(arg_len, f.width);
-	ft_printf_char_width(f, 1, 1);
-	ft_putstr(s);
-	ft_printf_char_width(f, 1, 0);
+	ft_printf_str_flag_cor(flags);
+	if (flags->smallest)
+		arg = va_arg(flags->list, char *);
+	return (arg);
 }

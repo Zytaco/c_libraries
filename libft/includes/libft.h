@@ -76,6 +76,11 @@ int					ft_tolower(int c);
 int					ft_toupper(int c);
 
 /*
+** ft_libft
+*/
+int					ft_printf(const char *format, ...);
+
+/*
 ** list-functions
 */
 void				ft_lstadd(t_list **alst, t_list *new);
