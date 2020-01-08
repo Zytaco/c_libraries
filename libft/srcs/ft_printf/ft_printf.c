@@ -43,9 +43,9 @@ static int		flag_checks_one(t_flags *fl, const char *format, int i)
 		fl->plus = 1;
 	else if (format[i] == ' ')
 		fl->space = 1;
-	else if (format[i] == 'd' && format[i + 1] == 'd')
+	else if (format[i] == 'h' && format[i + 1] == 'h')
 		fl->smallest = 1;
-	else if (format[i] == 'd' && format[i + 1] != 'd' && format[i - 1] != 'd')
+	else if (format[i] == 'h' && format[i + 1] != 'h' && format[i - 1] != 'h')
 		fl->small = 1;
 	else if (format[i] == 'l' && format[i + 1] != 'l' && format[i - 1] != 'l')
 		fl->big = 1;
@@ -66,14 +66,9 @@ char			*ft_printf_get_arg(t_flags *flags, char type, va_list list)
 		return (ft_printf_uint(flags, 10, 1, list));
 	else if (type == 'x' || type == 'X')
 		return (ft_printf_uint(flags, 16, type == 'X' ? 1 : 0, list));
-	else if (type == 'e' || type == 'E')
-		return (ft_printf_exp(flags, list));
-	else if (type == 'f' || type == 'F')
+	else if (type == 'e' || type == 'E' || type == 'f' || type == 'F'
+	|| type == 'g' || type == 'G' || type == 'a' || type == 'A')
 		return (ft_printf_float(flags, list));
-	else if (type == 'g' || type == 'G')
-		return (ft_printf_autoexp(flags, list));
-	else if (type == 'a' || type == 'A')
-		return (ft_printf_exactfloat(flags, list));
 	else if (type == 'c' || type == 'C')
 		return (ft_printf_char(flags, list));
 	else if (type == 's' || type == 'S')
@@ -82,10 +77,13 @@ char			*ft_printf_get_arg(t_flags *flags, char type, va_list list)
 		return (ft_printf_pointer(flags, list));
 	else if (type == 'n')
 		return (ft_printf_num(flags, list));
-	return (ft_printf_perc(flags));
+	else if (type == '%')
+		return (ft_printf_perc(flags));
+	else
+		return (NULL);
 }
 
-void			get_flags(const char *f, int i, t_flags flags, va_list list)
+int				get_flags(const char *f, int i, t_flags flags, va_list list)
 {
 	char *arg;
 
@@ -94,13 +92,14 @@ void			get_flags(const char *f, int i, t_flags flags, va_list list)
 	f[i] != 'e' && f[i] != 'E' && f[i] != 'f' && f[i] != 'F' && f[i] != 'g' &&
 	f[i] != 'G' && f[i] != 'a' && f[i] != 'A' && f[i] != 'c' && f[i] != 'C' &&
 	f[i] != 's' && f[i] != 'S' && f[i] != 'p' && f[i] != 'n' && f[i] != '%')
+	{
 		flag_checks_one(&flags, f, i);
-	if (!f[i])
-		return ;
+		i++;
+	}
 	flags.type = f[i];
 	arg = ft_printf_get_arg(&flags, f[i], list);
 	if (!arg)
-		return ;
+		return (i);
 	arg = ft_printf_hash(arg, flags);
 	arg = ft_printf_plus(arg, flags);
 	arg = ft_printf_space(arg, flags);
@@ -109,6 +108,7 @@ void			get_flags(const char *f, int i, t_flags flags, va_list list)
 	*(flags.count) += ft_strlen(arg);
 	ft_putstr(arg);
 	free(arg);
+	return (i);
 }
 
 int				ft_printf(const char *format, ...)
@@ -123,8 +123,8 @@ int				ft_printf(const char *format, ...)
 	while (format[i])
 	{
 		if (format[i] == '%')
-			get_flags(format, i + 1, (t_flags){0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-			0, 0, 0, 0, &count, '\0'}, list);
+			i = get_flags(format, i + 1, (t_flags){0, 0, 0, 0, 0, 0, 0, 0, 0,
+			0, 0, 0, 0, 0, &count, '\0'}, list);
 		else
 		{
 			write(1, format + i, 1);

@@ -21,7 +21,7 @@ static void	ft_printf_point_flag_cor(t_flags *f)
 		f->zero = 0;
 }
 
-char		*ft_printf_point(t_flags *flags, va_list list)
+char		*ft_printf_pointer(t_flags *flags, va_list list)
 {
 	char *arg;
 
