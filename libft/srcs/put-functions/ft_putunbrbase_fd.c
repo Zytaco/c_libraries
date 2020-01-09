@@ -1,26 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_putllnbr_fd.c                                   :+:    :+:            */
+/*   ft_putunbrbase_fd.c                                :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/12/18 15:58:03 by jheeresm      #+#    #+#                 */
-/*   Updated: 2019/12/18 15:58:04 by jheeresm      ########   odam.nl         */
+/*   Created: 2020/01/09 10:20:08 by jheeresm      #+#    #+#                 */
+/*   Updated: 2020/01/09 10:20:08 by jheeresm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libft.h"
 
-void			ft_putllnbr_fd(LL n, int fd)
+/*
+** maximum length: 64
+** 11111111 11111111 11111111 11111111 11111111 11111111 11111111 11111111
+*/
+
+void			ft_putunbrbase_fd(ULL n, int base, int fd)
 {
-	if (n == -9223372036854775807LL)
-		ft_putstr("-9223372036854775807");
-	else if (n < 0)
-	{
-		ft_putchar_fd('-', fd);
-		ft_putullnbr_fd(-1 * n, fd);
-	}
+	const char	upper[37] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	char		s[65];
+	int			i;
+
+	if (base < 2 || base > 36)
+		return ;
+	if (n == 0)
+		write(fd, "0", 1);
 	else
-		ft_putullnbr_fd(n, fd);
+	{
+		s[64] = '\0';
+		i = 64;
+		while (n > 0)
+		{
+			i--;
+			s[i] = upper[n % base];
+			n /= base;
+		}
+		ft_putstr_fd(s + i, fd);
+	}
 }

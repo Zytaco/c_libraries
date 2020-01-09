@@ -1,36 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_putllbase_fd.c                                  :+:    :+:            */
+/*   ft_putnbrbase_fd.c                                 :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/12/18 18:45:58 by jheeresm      #+#    #+#                 */
-/*   Updated: 2019/12/18 18:45:58 by jheeresm      ########   odam.nl         */
+/*   Created: 2020/01/09 10:20:38 by jheeresm      #+#    #+#                 */
+/*   Updated: 2020/01/09 10:20:39 by jheeresm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libft.h"
-
-static void		exceptions_l(int base, int fd)
-{
-	const char *exceptions[35] = {
-	"-111111111111111111111111111111111111111111111111111111111111111",
-	"-2021110011022210012102010021220101220221",
-	"-13333333333333333333333333333333", "-1104332401304422434310311212",
-	"-1540241003031030222122211", "-22341010611245052052300",
-	"-777777777777777777777", "-67404283172107811827", "-9223372036854775807",
-	"-1728002635214590697", "-41a792678515120367", "-10b269549075433c37",
-	"-4340724c6c71dc7a7", "-160e2ad3246366807", "-7FFFFFFFFFFFFFFF",
-	"-33d3d8307b214008", "-16agh595df825fa7", "-ba643dci0ffeehh",
-	"-5cbfjia3fh26ja7", "-2heiciiie82dh97", "-1adaibb21dckfa7",
-	"-i6k448cf4192c2", "-acd772jnc9l0l7", "-64ie1focnn5g77", "-3igoecjbmca687",
-	"-27c48l5b37oaop", "-1bk39f3ah3dmq7", "-q1se8f0m04isb", "-hajppbc1dc207",
-	"-bm03i95hia437", "-7VVVVVVVVVVVV", "-5hg4ck9jd4u37", "-3tdtk1v8j6tpp",
-	"-2pijmikexrxp7", "-1y2p0ij32e8e7"};
-
-	ft_putstr_fd(exceptions[base - 2], fd);
-}
 
 static void		exceptions_u(int base, int fd)
 {
@@ -52,23 +32,19 @@ static void		exceptions_u(int base, int fd)
 	ft_putstr_fd(exceptions[base - 2], fd);
 }
 
-void			ft_putllbase_fd(LL n, int base,
-														int fd, char up_case)
+void			ft_putnbrbase_fd(LL n, int base, int fd)
 {
 	if (base < 2 || base > 36)
 		return ;
 	else if (n == -9223372036854775807LL)
 	{
-		if (up_case)
-			exceptions_u(base, fd);
-		else
-			exceptions_l(base, fd);
+		exceptions_u(base, fd);
 	}
 	else if (n < 0)
 	{
 		ft_putchar_fd('-', fd);
-		ft_putullbase_fd(-1 * n, base, fd, up_case);
+		ft_putunbrbase_fd(-1 * n, base, fd);
 	}
 	else
-		ft_putullbase_fd(n, base, fd, up_case);
+		ft_putunbrbase_fd(n, base, fd);
 }

@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_putullnbr.c                                     :+:    :+:            */
+/*   ft_putunbrbase.c                                   :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: tide-jon <tide-jon@student.codam.nl>         +#+                     */
+/*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/06/28 17:09:19 by tide-jon       #+#    #+#                */
-/*   Updated: 2019/06/28 17:09:27 by tide-jon      ########   odam.nl         */
+/*   Created: 2020/01/09 10:27:35 by jheeresm      #+#    #+#                 */
+/*   Updated: 2020/01/09 10:27:35 by jheeresm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libft.h"
 
-void			ft_putullnbr(ULL n)
+/*
+** maximum length: 64
+** 11111111 11111111 11111111 11111111 11111111 11111111 11111111 11111111
+*/
+
+void			ft_putunbrbase(ULL n, int base)
 {
-	ft_putullnbr_fd(n, 1);
+	ft_putunbrbase_fd(n, base, 1);
 }

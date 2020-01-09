@@ -139,22 +139,20 @@ char				*ft_ulltoabase(ULL n, int base);
 /*
 ** put-functions
 */
-void				ft_putbase_fd(int n, int base, int fd, int up_case);
-void				ft_putbase(int n, int base, int up_case);
 void				ft_putchar_fd(char c, int fd);
 void				ft_putchar(char c);
 void				ft_putendl_fd(char const *s, int fd);
 void				ft_putendl(char const *s);
-void				ft_putllbase_fd(LL n, int base, int fd, char up_case);
-void				ft_putllnbr_fd(LL n, int fd);
-void				ft_putllnbr(LL n);
-void				ft_putnbr_fd(int n, int fd);
-void				ft_putnbr(int n);
+void				ft_putnbr_fd(LL n, int fd);
+void				ft_putnbr(LL n);
+void				ft_putnbrbase_fd(LL n, int base, int fd);
+void				ft_putnbrbase(LL n, int base);
 void				ft_putstr_fd(char const *s, int fd);
 void				ft_putstr(char const *s);
-void				ft_putullbase_fd(ULL n, int base, int fd, char up_case);
-void				ft_putullnbr_fd(ULL n, int fd);
+void				ft_putunbr_fd(ULL n, int fd);
 void				ft_putullnbr(ULL n);
+void				ft_putunbrbase_fd(ULL n, int base, int fd);
+void				ft_putunbrbase(ULL n, int base);
 
 /*
 ** str-functions

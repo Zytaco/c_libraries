@@ -16,7 +16,7 @@ static int		flag_checks_two(t_flags *fl, const char *format, int i)
 {
 	if (format[i] == 'L')
 		fl->float_biggest = 1;
-	else if (ft_isdigit(format[i]) && format[i - 1] != '.')
+	else if (format[i] != '0' && ft_isdigit(format[i]) && format[i - 1] != '.')
 	{
 		fl->width_f = 1;
 		fl->width = ft_atoi(format + i);
@@ -37,7 +37,7 @@ static int		flag_checks_one(t_flags *fl, const char *format, int i)
 		fl->hash = 1;
 	else if (format[i] == '0')
 		fl->zero = 1;
-	else if (format[i] == '-' && !ft_isdigit(format[i + 1]))
+	else if (format[i] == '-')
 		fl->minus = 1;
 	else if (format[i] == '+')
 		fl->plus = 1;

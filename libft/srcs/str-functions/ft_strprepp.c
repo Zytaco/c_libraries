@@ -27,6 +27,6 @@ char	*ft_strprepp(const char *pre, char **s)
 	ft_strcpy(new + pre_len, *s);
 	new[pre_len + s_len] = '\0';
 	free(*s);
-	*s = NULL;
-	return (*s);
+	*s = new;
+	return (new);
 }

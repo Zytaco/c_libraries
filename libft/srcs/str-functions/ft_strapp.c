@@ -27,6 +27,6 @@ char	*ft_strapp(char **s, const char *app)
 	ft_strcpy(new + s_len, app);
 	new[s_len + app_len] = '\0';
 	free(*s);
-	*s = NULL;
-	return (*s);
+	*s = new;
+	return (new);
 }

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_putllnbr.c                                      :+:    :+:            */
+/*   ft_putnbrbase.c                                    :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: tide-jon <tide-jon@student.codam.nl>         +#+                     */
+/*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/06/28 17:08:07 by tide-jon       #+#    #+#                */
-/*   Updated: 2019/06/28 17:08:58 by tide-jon      ########   odam.nl         */
+/*   Created: 2020/01/09 10:27:31 by jheeresm      #+#    #+#                 */
+/*   Updated: 2020/01/09 10:27:31 by jheeresm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libft.h"
 
-void			ft_putllnbr(LL n)
+void			ft_putnbrbase(LL n, int base)
 {
-	ft_putllnbr_fd(n, 1);
+	ft_putnbrbase_fd(n, base, 1);
 }

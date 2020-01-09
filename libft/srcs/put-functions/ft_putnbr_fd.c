@@ -12,7 +12,15 @@
 
 #include "../../includes/libft.h"
 
-void	ft_putnbr_fd(int n, int fd)
+void			ft_putnbr_fd(LL n, int fd)
 {
-	ft_putllnbr_fd(n, fd);
+	if (n == -9223372036854775807LL)
+		ft_putstr("-9223372036854775807");
+	else if (n < 0)
+	{
+		ft_putchar_fd('-', fd);
+		ft_putunbr_fd(-1 * n, fd);
+	}
+	else
+		ft_putunbr_fd(n, fd);
 }

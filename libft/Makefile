@@ -28,10 +28,9 @@ MATH-FUNCTIONS	=	abs count_digits modulo nroot power primes pythagoras sqrt\
 MEM-FUNCTIONS	= 	bzero memalloc memccpy memchr memcmp memcpy memdel memmove \
 					memset
 
-PUT-FUNCTIONS	=	putbase_fd putbase	putchar_fd	putchar	putendl_fd\
-					putendl	putllbase_fd	putllnbr_fd	putllnbr	putnbr_fd\
-					putnbr	putstr_fd	putstr	putullbase_fd	putullnbr_fd\
-					putullnbr
+PUT-FUNCTIONS	=	putchar_fd	putchar	putendl_fd putendl	putnbr_fd	putnbr \
+					putnbrbase_fd putnbrbase	putstr_fd	putstr\
+					putunbr_fd	putunbr	putunbrbase_fd	putunbrbase
 
 STR-FUNCTIONS	=	skip_whitespace stradd strapp skipstr\
 					strcat strchr strclr strcmp strcount strcpy strdel strdup \
@@ -62,7 +61,7 @@ OBJECTS			=	$(SOURCES:%=%.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJECTS)
+$(NAME): $(OBJECTS) $(FT_PRINTF_H)
 		@ ar rc $(NAME) $(OBJECTS)
 		@ ranlib $(NAME)
 		@ echo "\033[36mLIBFT: COMPILED\033[0m"

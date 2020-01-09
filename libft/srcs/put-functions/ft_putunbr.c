@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_putbase_fd.c                                    :+:    :+:            */
+/*   ft_putunbr.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/12/19 12:22:55 by jheeresm      #+#    #+#                 */
-/*   Updated: 2019/12/19 12:22:56 by jheeresm      ########   odam.nl         */
+/*   Created: 2020/01/09 10:03:40 by jheeresm      #+#    #+#                 */
+/*   Updated: 2020/01/09 10:03:40 by jheeresm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libft.h"
 
-void	ft_putbase_fd(int n, int base, int fd, int up_case)
+void			ft_putunbr(ULL n)
 {
-	ft_putllbase_fd(n, base, fd, up_case);
+	ft_putunbr_fd(n, 1);
 }
