@@ -40,7 +40,7 @@ STR-FUNCTIONS	=	skip_whitespace stradd strapp skipstr\
 					strtoupper strtrim strrepeat strupper
 
 MISC-FUNCTIONS	=	atoi atoullbase error free_array get_next_line itoa \
-					itoabase lltoabase ulltoabase
+					itobase utoa utobase
 
 FT_PRINTF_SUB	=	char flags float int num perc pointer str uint
 FT_PRINTF		=	$(FT_PRINTF_SUB:%=printf_%) printf

@@ -132,9 +132,9 @@ void				ft_error(char *str);
 void				ft_free_array(void ***array);
 int					ft_get_next_line(const int fd, char **line);
 char				*ft_itoa(LL n);
-char				*ft_itoabase(LL n, int base);
-char				*ft_lltoabase(LL n, int base);
-char				*ft_ulltoabase(ULL n, int base);
+char				*ft_utoa(ULL n);
+char				*ft_itobase(LL n, int base);
+char				*ft_utobase(ULL n, int base);
 
 /*
 ** put-functions
@@ -150,7 +150,7 @@ void				ft_putnbrbase(LL n, int base);
 void				ft_putstr_fd(char const *s, int fd);
 void				ft_putstr(char const *s);
 void				ft_putunbr_fd(ULL n, int fd);
-void				ft_putullnbr(ULL n);
+void				ft_putunbr(ULL n);
 void				ft_putunbrbase_fd(ULL n, int base, int fd);
 void				ft_putunbrbase(ULL n, int base);
 

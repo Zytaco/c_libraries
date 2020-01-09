@@ -26,6 +26,6 @@ char		*ft_printf_pointer(t_flags *flags, va_list list)
 	char *arg;
 
 	ft_printf_point_flag_cor(flags);
-	arg = ft_ulltoabase(va_arg(list, unsigned int), 16);
+	arg = ft_utobase(va_arg(list, unsigned int), 16);
 	return (arg);
 }

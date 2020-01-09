@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_utoabase.c                                      :+:    :+:            */
+/*   ft_utobase.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/12/19 13:54:04 by jheeresm      #+#    #+#                 */
-/*   Updated: 2019/12/19 13:54:04 by jheeresm      ########   odam.nl         */
+/*   Created: 2020/01/09 11:06:28 by jheeresm      #+#    #+#                 */
+/*   Updated: 2020/01/09 11:06:28 by jheeresm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libft.h"
 
-char	*ft_ulltoabase(ULL n, int base)
+char	*ft_utobase(ULL n, int base)
 {
 	const char	uppercase[37] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	char		s[sizeof(ULL) * 8 + 1];
