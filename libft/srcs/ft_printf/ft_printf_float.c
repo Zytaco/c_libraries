@@ -12,14 +12,55 @@
 
 #include "ft_printf.h"
 
-char		*ft_ldtoa(long double f)
+/*
+**	mantissa: 8 Bytes
+**	determinant: 2 Bytes (-1 bit for sign)
+*/
+
+char		*get_f(long double f, size_t prec)
 {
-	f = f - 1 + 1;
-	return (ft_strdup(" ERROR(f/F) "));
+	char		*ret;
+	long double	factor;
+	int			dot;
+
+	dot = 1;
+	factor = 1.;
+	while (f > factor)
+	{
+		dot++;
+		factor *= 10;
+	}
+	while (f < factor)
+	{
+		dot--;
+		factor /= 10;
+	}
+	ret = ft_itobase((LL)f, 10);
+	ft_strprep(ft_strrepeat("0", dot * -1), &ret);
+	ft_strapp(&ret, ft_strrepeat("0", dot + prec + 1));
+	if (f < 0)
+		ft_strprep("-", &ret);
+	if (prec > 0)
+	{
+		ft_strins(&ret, ".", dot);
+		ret[dot + prec + 1] = '\0';
+	}
+	else
+		ret[dot] = '\0';
+	return (ret);
 }
 
 static void	ft_printf_float_flag_cor(t_flags *f)
 {
+	if (!(f->prec_f))
+	{
+		if (f->type == 'f' || f->type == 'F')
+			f->prec = 6;
+		else
+			ft_error("ERROR: float called with invalid type");
+	}
+	if ((f->type == 'g' || f->type == 'G') && f->prec_f && f->prec == 0)
+		f->prec = 1;
 	if (f->smallest + f->small + f->big + f->biggest > 1)
 		ft_error("ERROR: ft_printf: multiple size flags are active on a %s.");
 	if (f->minus && f->zero)
@@ -32,9 +73,9 @@ char		*ft_printf_float(t_flags *flags, va_list list)
 
 	ft_printf_float_flag_cor(flags);
 	if (flags->float_biggest)
-		arg = ft_ldtoa(va_arg(list, long double));
+		arg = get_f(va_arg(list, long double), flags->prec);
 	else
-		arg = ft_ldtoa(va_arg(list, double));
+		arg = get_f(va_arg(list, double), flags->prec);
 	if (flags->type == ft_toupper(flags->type))
 		ft_strupper(arg);
 	return (arg);

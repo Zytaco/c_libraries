@@ -1,18 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_itoa.c                                          :+:    :+:            */
+/*   ft_strcut.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/01/16 13:33:30 by jheeresm      #+#    #+#                 */
-/*   Updated: 2019/02/11 12:54:41 by jheeresm      ########   odam.nl         */
+/*   Created: 2020/01/10 12:41:49 by jheeresm      #+#    #+#                 */
+/*   Updated: 2020/01/10 12:41:49 by jheeresm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libft.h"
 
-char	*ft_itoa(LL n)
+/*
+** 1234567
+** len		7
+** start	1
+** end		2
+*/
+
+char	*ft_strcut(char **s, size_t start, size_t end)
 {
-	return (ft_itobase(n, 10));
+	const size_t	len = ft_strlen(s);
+	char			*new;
+
+	if (!s || !*s)
+		return (NULL);
+	if (start >= len || end >= len || start >= end)
+		return (*s);
+	new = ft_strnew(len - end + start);
+	if (!new)
+		return (NULL);
+	ft_strncpy(new, *s, start);
+	ft_strncpy(new, *s + end, len - end);
+	*s = new;
+	return (new);
 }

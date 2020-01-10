@@ -36,11 +36,11 @@ STR-FUNCTIONS	=	skip_whitespace stradd strapp skipstr\
 					strcat strchr strclr strcmp strcount strcpy strdel strdup \
 					strequ strins striter striteri strjoin strlcat strlen \
 					strlower strmap strmapi strncat strncmp strncpy strnequ \
-					strnew strnstr strprepp strrchr strsplit strstr strsub \
+					strnew strnstr strprep strrchr strsplit strstr strsub \
 					strtoupper strtrim strrepeat strupper
 
-MISC-FUNCTIONS	=	atoi atoullbase error free_array get_next_line itoa \
-					itobase utoa utobase
+MISC-FUNCTIONS	=	atoi atoullbase basetonbr error free_array get_next_line \
+					itoa itobase utoa utobase
 
 FT_PRINTF_SUB	=	char flags float int num perc pointer str uint
 FT_PRINTF		=	$(FT_PRINTF_SUB:%=printf_%) printf
@@ -82,3 +82,9 @@ fclean:
 		@ echo "\033[91mLIBFT: FULL CLEANED\033[0m"
 
 re:	 fclean all
+
+test: $(NAME)
+		@ clear
+		@ gcc test.c libft.a
+		@ ./a.out
+		@ rm a.out

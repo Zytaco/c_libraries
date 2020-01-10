@@ -21,7 +21,7 @@ char	*ft_strrepeat(const char *s, ULL n)
 
 	if (!s || n <= 0)
 		return (NULL);
-	new = malloc(sizeof(char) * n * len);
+	new = ft_strnew(n * len);
 	if (!new)
 		return (NULL);
 	i = 0;

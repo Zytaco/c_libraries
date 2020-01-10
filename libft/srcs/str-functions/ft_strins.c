@@ -24,10 +24,10 @@ char	*ft_strins(char **s, const char *ins, int i)
 		return (*s);
 	new = ft_strnew(ins_len + s_len);
 	ft_strncpy(new, *s, i);
-	ft_strcpy(new + i, ins);
-	ft_strcpy(new + i + ins_len, *s + i);
+	ft_strncpy(new + i, ins, ins_len);
+	ft_strncpy(new + i + ins_len, *s + i, s_len - i);
 	new[ins_len + s_len] = '\0';
 	free(*s);
-	*s = NULL;
-	return (*s);
+	*s = new;
+	return (new);
 }

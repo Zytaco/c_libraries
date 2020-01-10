@@ -17,11 +17,11 @@ char			*ft_printf_hash(char *arg, t_flags flags)
 	if (!flags.hash)
 		return (arg);
 	if (flags.type == 'o')
-		ft_strprepp("0", &arg);
+		ft_strprep("0", &arg);
 	else if (flags.type == 'x')
-		ft_strprepp("0x", &arg);
+		ft_strprep("0x", &arg);
 	else if (flags.type == 'X')
-		ft_strprepp("0X", &arg);
+		ft_strprep("0X", &arg);
 	else if ((flags.type == 'a' || flags.type == 'A' || flags.type == 'e' ||
 	flags.type == 'E' || flags.type == 'f' || flags.type == 'F' ||
 	flags.type == 'g' || flags.type == 'G') && !ft_strchr(arg, '.'))
@@ -73,7 +73,7 @@ char			*ft_printf_prec(char *arg, t_flags flags)
 	flags.type == 'u' || flags.type == 'x' || flags.width == 'X')
 	{
 		if (ft_strlen(arg) < flags.prec)
-			ft_strprepp(ft_strrepeat("0",
+			ft_strprep(ft_strrepeat("0",
 										flags.prec - ft_strlen(arg)), &arg);
 	}
 	return (arg);
@@ -85,14 +85,12 @@ char			*ft_printf_width(char *arg, size_t len, t_flags flags)
 
 	if (flags.width <= len || len < 0)
 		return (arg);
-	if (flags.zero &&
-	!(flags.type == 'd' || flags.type == 'i' || flags.type == 'o' ||
-	flags.type == 'u' || flags.type == 'x' || flags.width == 'X'))
+	if (flags.zero)
 		filler = ft_strrepeat("0", flags.width - len);
 	else
 		filler = ft_strrepeat(" ", flags.width - len);
 	if (!flags.minus)
-		ft_strprepp(filler, &arg);
+		ft_strprep(filler, &arg);
 	else
 		ft_strapp(&arg, filler);
 	return (arg);

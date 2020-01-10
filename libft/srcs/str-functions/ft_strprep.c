@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strprepp.c                                      :+:    :+:            */
+/*   ft_strprep.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
@@ -12,7 +12,7 @@
 
 #include "../../includes/libft.h"
 
-char	*ft_strprepp(const char *pre, char **s)
+char	*ft_strprep(const char *pre, char **s)
 {
 	char		*new;
 	const int	pre_len = ft_strlen(pre);
