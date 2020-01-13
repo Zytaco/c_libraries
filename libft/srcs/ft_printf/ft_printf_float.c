@@ -17,36 +17,51 @@
 **	determinant: 2 Bytes (-1 bit for sign)
 */
 
-char		*get_f(long double f, size_t prec)
+char		*float_exceptions(long double f)
 {
-	char		*ret;
-	long double	factor;
-	int			dot;
+	union u_float	u_float;
 
-	dot = 1;
-	factor = 1.;
-	while (f > factor)
+	if (EXP_ALL_ONE)
 	{
-		dot++;
-		factor *= 10;
-	}
-	while (f < factor)
-	{
-		dot--;
-		factor /= 10;
-	}
-	ret = ft_itobase((LL)f, 10);
-	ft_strprep(ft_strrepeat("0", dot * -1), &ret);
-	ft_strapp(&ret, ft_strrepeat("0", dot + prec + 1));
-	if (f < 0)
-		ft_strprep("-", &ret);
-	if (prec > 0)
-	{
-		ft_strins(&ret, ".", dot);
-		ret[dot + prec + 1] = '\0';
+		if (BIT_63 && !BIT_62 && MANT_ALL_ZERO)
+			return (ft_strdup("-inf" + FL_SIGN));
+		else
+			return (ft_strdup("NaN"));
 	}
 	else
-		ret[dot] = '\0';
+		return (NULL);
+}
+
+size_t		get_double_len(long double f, int base)
+{
+	size_t	len;
+
+	len = 1;
+	while (!(-base < f && f < base))
+	{
+		len++;
+		f /= base;
+	}
+	return ((f < 0) ? len + 1 : len);
+}
+
+char		*get_f(long double f, size_t prec)
+{
+	char			*ret;
+	size_t			double_len;
+
+	ret = float_exceptions(f);
+	if (ret)
+		return (ret);
+	double_len = get_double_len(f, 10);
+	ret = ft_strnew(double_len + 1 + prec);
+	if (prec != 0)
+		ret[double_len] = '.';
+	else
+		ret[double_len] = '\0';
+
+
+
 	return (ret);
 }
 

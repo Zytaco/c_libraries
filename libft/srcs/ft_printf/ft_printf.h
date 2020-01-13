@@ -16,6 +16,21 @@
 # include "../../includes/libft.h"
 # include <stdarg.h>
 
+# define FL_SIGN		((u_float.exp >> 1 & (short)1 == 1) ? 1 : 0)
+# define EXP_ALL_ONE	(u_float.exp & ~(short)0)
+# define EXP_ALL_ZERO	(u_float.exp & (short)0)
+# define BIT_63			(u_float.mant_1 >> 31 & 1ULL)
+# define BIT_62			(u_float.mant_1 >> 30 & 1ULL)
+# define MANT_ALL_ZERO	(u_float.mant_1 >> 2 & 0ULL && u_float.mant_2 & 0UL)
+# define MANT_ALL_ONE	(u_float.mant_1 >> 2 & ~0ULL && u_float.mant_2 & ~0UL)
+union			u_float
+{
+	double		f;
+	U short		exp : 2;
+	ULL			mant_1 : 8;
+	U long		mant_2 : 6;
+};
+
 typedef enum	e_argcode
 {
 	arg_char = 0,

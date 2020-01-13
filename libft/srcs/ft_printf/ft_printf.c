@@ -117,6 +117,8 @@ int				ft_printf(const char *format, ...)
 	int		count;
 	va_list list;
 
+	if (!format)
+		return (0);
 	va_start(list, format);
 	count = 0;
 	i = 0;
