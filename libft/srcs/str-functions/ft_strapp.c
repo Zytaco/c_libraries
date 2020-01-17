@@ -20,8 +20,13 @@ char	*ft_strapp(char **s, const char *app)
 
 	if (!s)
 		return (NULL);
-	if (!app || !*s)
+	if (!app)
 		return (*s);
+	if (!*s)
+	{
+		*s = ft_strdup(app);
+		return (*s);
+	}
 	new = ft_strnew(s_len + app_len);
 	ft_strcpy(new, *s);
 	ft_strcpy(new + s_len, app);

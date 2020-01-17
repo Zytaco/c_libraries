@@ -43,25 +43,6 @@ typedef struct		s_gnl_list
 	struct s_gnl_list	*next;
 }					t_gnl_list;
 
-typedef struct		s_printf
-{
-	va_list	args;
-	va_list	backup;
-	int		precision;
-	int		width;
-	char	*format;
-	char	type;
-	int		ret;
-	short	zero;
-	short	dot;
-	short	space;
-	short	hash;
-	short	minus;
-	short	plus;
-	char	length;
-	void	(*arr[11])(struct s_printf*);
-}					t_printf;
-
 /*
 ** char-functions
 */

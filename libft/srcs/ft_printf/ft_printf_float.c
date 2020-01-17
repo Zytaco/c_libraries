@@ -19,14 +19,23 @@
 
 char		*float_exceptions(long double f)
 {
-	union u_float	u_float;
+	union u_float	u_f;
 
-	if (EXP_ALL_ONE)
+	u_f.f = f;
+	if ((u_f.eld[8] == 255) && (u_f.eld[9] & 127) == 127)
 	{
-		if (BIT_63 && !BIT_62 && MANT_ALL_ZERO)
-			return (ft_strdup("-inf" + FL_SIGN));
+		if (((u_f.eld[7] >> 7) & 1) == 1 && ((u_f.eld[7] >> 6) & 1) == 0 &&
+		u_f.eld[6] == 0 && u_f.eld[5] == 0 && u_f.eld[4] == 0 &&
+		u_f.eld[3] == 0 && u_f.eld[2] == 0 && u_f.eld[1] == 0 &&
+		u_f.eld[0] == 0)
+		{
+			if ((u_f.eld[9] >> 7) == 1)
+				return (ft_strdup("-inf"));
+			else
+				return (ft_strdup("inf"));
+		}
 		else
-			return (ft_strdup("NaN"));
+			return (ft_strdup("nan"));
 	}
 	else
 		return (NULL);
@@ -35,9 +44,11 @@ char		*float_exceptions(long double f)
 size_t		get_double_len(long double f, int base)
 {
 	size_t	len;
+	union u_float u_float;
 
+	u_float.f = f;
 	len = 1;
-	while (!(-base < f && f < base))
+	while (!(-1 * base < f && f < base))
 	{
 		len++;
 		f /= base;
@@ -45,23 +56,26 @@ size_t		get_double_len(long double f, int base)
 	return ((f < 0) ? len + 1 : len);
 }
 
-char		*get_f(long double f, size_t prec)
+char		*get_f(long double f, size_t prec, int base)
 {
 	char			*ret;
-	size_t			double_len;
+	char			bin[82];
+	union u_float	u_f;
+	int				i;
 
 	ret = float_exceptions(f);
 	if (ret)
 		return (ret);
-	double_len = get_double_len(f, 10);
-	ret = ft_strnew(double_len + 1 + prec);
-	if (prec != 0)
-		ret[double_len] = '.';
-	else
-		ret[double_len] = '\0';
-
-
-
+	base -= prec;
+	u_f.f = f;
+	i = 0;
+	while (i < 80)
+	{
+		bin[i] = '0' + ((u_f.eld[i / 8] >> (i % 8)) & 1);
+		i++;
+	}
+	bin[i] = '\0';
+	ret = ft_strdup(bin);
 	return (ret);
 }
 
@@ -88,9 +102,9 @@ char		*ft_printf_float(t_flags *flags, va_list list)
 
 	ft_printf_float_flag_cor(flags);
 	if (flags->float_biggest)
-		arg = get_f(va_arg(list, long double), flags->prec);
+		arg = get_f(va_arg(list, long double), flags->prec, 10);
 	else
-		arg = get_f(va_arg(list, double), flags->prec);
+		arg = get_f(va_arg(list, double), flags->prec, 10);
 	if (flags->type == ft_toupper(flags->type))
 		ft_strupper(arg);
 	return (arg);

@@ -83,8 +83,11 @@ fclean:
 
 re:	 fclean all
 
-test: $(NAME)
+test: $(NAME) test.c
 		@ clear
+		@ rm -f a.out
+		@ rm -f test
+		@ echo "redoing" > test; 
+		@ rm -f test
 		@ gcc test.c libft.a
-		@ ./a.out
-		@ rm a.out
+		@ ./a.out > test

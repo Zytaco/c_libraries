@@ -16,20 +16,26 @@
 # include "../../includes/libft.h"
 # include <stdarg.h>
 
-# define FL_SIGN		((u_float.exp >> 1 & (short)1 == 1) ? 1 : 0)
-# define EXP_ALL_ONE	(u_float.exp & ~(short)0)
-# define EXP_ALL_ZERO	(u_float.exp & (short)0)
-# define BIT_63			(u_float.mant_1 >> 31 & 1ULL)
-# define BIT_62			(u_float.mant_1 >> 30 & 1ULL)
-# define MANT_ALL_ZERO	(u_float.mant_1 >> 2 & 0ULL && u_float.mant_2 & 0UL)
-# define MANT_ALL_ONE	(u_float.mant_1 >> 2 & ~0ULL && u_float.mant_2 & ~0UL)
+/*
+** long double is stored like this:
+**
+** bit 79			sign
+** bit 78 - 63		exponent
+** bit 62			whole part of mantissa
+** bit 61 - 0		fractional part of mantissa
+**
+** bit with index x in u_f can be read using:
+** u_f.eld[x / 8] & ((x % 8) << 1)
+*/
 union			u_float
 {
-	double		f;
-	U short		exp : 2;
-	ULL			mant_1 : 8;
-	U long		mant_2 : 6;
+	long double	f;
+	U char			eld[10];
 };
+
+/*
+** float macros for use with union to check bits.
+*/
 
 typedef enum	e_argcode
 {

@@ -20,8 +20,13 @@ char	*ft_strprep(const char *pre, char **s)
 
 	if (!s)
 		return (NULL);
-	if (!pre || !*s)
+	if (!pre)
 		return (*s);
+	if (!*s)
+	{
+		*s = ft_strdup(pre);
+		return (*s);
+	}
 	new = ft_strnew(pre_len + s_len);
 	ft_strcpy(new, pre);
 	ft_strcpy(new + pre_len, *s);
