@@ -95,6 +95,7 @@ int					ft_sqrt(unsigned int num);
 ** mem-functions
 */
 void				ft_bzero(void *s, size_t n);
+void				ft_free(void *ptr);
 void				*ft_memalloc(size_t size);
 void				*ft_memccpy(void *dst, const void *src, int c, size_t n);
 void				*ft_memchr(const void *s, int c, size_t n);
