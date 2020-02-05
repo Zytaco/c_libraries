@@ -43,8 +43,8 @@ char		*float_exceptions(long double f)
 
 size_t		get_double_len(long double f, int base)
 {
-	size_t	len;
-	union u_float u_float;
+	size_t			len;
+	union u_float	u_float;
 
 	u_float.f = f;
 	len = 1;

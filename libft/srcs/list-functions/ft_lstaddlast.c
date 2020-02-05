@@ -16,8 +16,13 @@ void	ft_lstaddlast(t_list **alst, t_list *new)
 {
 	t_list *current;
 
-	if (alst == NULL || *alst == NULL)
+	if (alst == NULL)
 		return ;
+	if (*alst == NULL)
+	{
+		*alst = new;
+		return ;
+	}
 	current = *alst;
 	while (current->next != NULL)
 		current = current->next;

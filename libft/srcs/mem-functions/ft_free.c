@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_putend_fd.c                                     :+:    :+:            */
+/*   ft_free.c                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/01/16 17:40:14 by jheeresm      #+#    #+#                 */
-/*   Updated: 2019/02/08 14:24:36 by jheeresm      ########   odam.nl         */
+/*   Created: 2020/02/05 12:35:15 by jheeresm      #+#    #+#                 */
+/*   Updated: 2020/02/05 12:35:16 by jheeresm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libft.h"
 
-void	ft_putendl_fd(char const *s, int fd)
+void	ft_free(void *ptr)
 {
-	int i;
-
-	if (s != (char*)0)
-	{
-		i = 0;
-		while (s[i])
-		{
-			write(fd, s + i, 1);
-			i++;
-		}
-	}
-	write(fd, "\n", 1);
+	if (ptr)
+		free(ptr);
 }

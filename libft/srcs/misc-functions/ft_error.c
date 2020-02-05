@@ -14,6 +14,7 @@
 
 void		ft_error(char *str)
 {
-	ft_putendl(str);
+	if (str)
+		ft_putendl(str);
 	exit(0);
 }

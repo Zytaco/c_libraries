@@ -14,11 +14,18 @@
 
 void	ft_lstaddend(t_list **alst, t_list *new)
 {
-	t_list	*current_elem;
+	t_list	*current;
 
-	current_elem = *alst;
-	while (current_elem)
-		current_elem = current_elem->next;
-	current_elem = new;
+	if (!alst)
+		return ;
+	if (!*alst)
+	{
+		*alst = new;
+		return ;
+	}
+	current = *alst;
+	while (current && current->next)
+		current = current->next;
+	current->next = new;
 	new->next = NULL;
 }

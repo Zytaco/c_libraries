@@ -22,6 +22,9 @@ int		ft_lstlen(t_list **alst)
 	current = *alst;
 	len = 1;
 	while (current->next != NULL)
+	{
+		current = current->next;
 		len++;
+	}
 	return (len);
 }
